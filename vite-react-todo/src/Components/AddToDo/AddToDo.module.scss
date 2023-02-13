@@ -1,0 +1,61 @@
+.main {
+    width: 100%;
+    display: flex;
+    margin: 5rem auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10rem;
+
+    .taskForm {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        transition: all 200ms ease-in-out;
+
+        .inputField {
+            width: 100%;
+            font-size: 1.4rem;
+            color: coral;
+            transition: all 200ms ease-in-out;
+        }
+        .inputField:focus {
+            background-color: black;
+        }
+        .inputField:not(:focus) {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .taskDetails {
+            width: 30%;
+            transition: all 200ms ease-in-out;
+        }
+        .taskBody {
+            box-sizing: border-box;
+            width: 100%;
+            height: 20rem;
+            font-family: inherit;
+            vertical-align: middle;
+            outline: none;
+
+            background-color: white;
+        }
+    }
+
+    .newTasksContaner {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+
+        .taskItem {
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid coral;
+            flex-wrap: nowrap;
+        }
+    }
+}
