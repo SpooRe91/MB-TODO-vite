@@ -10,10 +10,8 @@ const FormComponent = () => {
     const dispatch = useAppDispatch();
 
     const [data, setData] = useState({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
-    const [isDisabled, setIsDisabled] = useState(false);
 
-
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         console.log("submitted");
         setData(state => ({
             ...state,
@@ -34,11 +32,7 @@ const FormComponent = () => {
         setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
     }
 
-
-    const handleClearError = () => {
-
-        dispatch(clearError());
-    }
+    const handleClearError = () => dispatch(clearError());
 
 
     return (
@@ -56,9 +50,8 @@ const FormComponent = () => {
             />
 
             <label htmlFor="taskBody">Task body</label>
-            <input
+            <textarea
                 className={styles.inputField}
-                type="text"
                 id="taskBody"
                 name="taskBody"
                 placeholder='Task description...'
@@ -66,7 +59,7 @@ const FormComponent = () => {
                 value={data.taskBody}
                 required
             />
-            <label htmlFor="taskBody">Task issued by</label>
+            <label htmlFor="taskOwner">Task issued by</label>
             <input
                 className={styles.inputField}
                 type="text"
@@ -98,7 +91,7 @@ const FormComponent = () => {
                 onChange={(e) => changeHandler(e)}
                 value={data.taskEnd}
             />
-            <input type="submit" />
+            <input type="submit" className={styles.submitBtn} />
             {
                 tasksState.error
                     ?
