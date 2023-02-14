@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit';
 
 import styles from "./AddToDo.module.scss";
@@ -6,17 +5,24 @@ import { useAppSelector, useAppDispatch } from '../../App/hooks';
 import { taskState } from '../../features/tasks/taskSlice';
 import TaskComponent from './TaskComponent';
 import FormComponent from './FormComponent';
+import { useState } from 'react';
 
 
 const AddToDo = () => {
 
     const tasksState = useAppSelector(taskState);
-    const dispatch = useAppDispatch();
+    const [toAddTask, setToAddTask] = useState(false);
 
     return (
 
         <div className={styles.main}>
-            <FormComponent />
+            <button className={styles.showFormButton} onClick={() => setToAddTask(state => !state)}>{toAddTask ? 'Hide task from' : 'Show task form'}</button>
+            {
+                toAddTask
+                    ?
+                    <FormComponent />
+                    : null
+            }
             <div className={styles.newTasksContaner}>
                 <h2>New Tasks</h2>
                 {
@@ -24,20 +30,13 @@ const AddToDo = () => {
                         ?
                         tasksState?.tasks.map((task) => {
                             return (
-                                <TaskComponent key={nanoid()}
-                                    taskName={task.taskName}
-                                    taskBody={task.taskBody}
-                                    taskStart={task.taskStart}
-                                    taskOwner={task.taskOwner}
-                                    taskId={task.taskId}
-                                    error={task.error} />
+                                <TaskComponent key={nanoid()} {...task} />
                             )
                         })
                         :
                         null
                 }
             </div>
-
         </div>
     )
 }
