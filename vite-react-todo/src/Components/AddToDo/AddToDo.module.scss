@@ -1,10 +1,33 @@
 .main {
     width: 100%;
     display: flex;
-    margin: 5rem auto;
+    margin: 5rem 5rem;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10rem;
+    gap: 1rem;
+    flex-direction: column;
+
+    .showFormButton {
+        width: 10rem;
+        margin: 1rem;
+        border: 1px solid coral;
+        border-radius: 0.5rem;
+        box-shadow: 1px 1px 5px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fd9898;
+        transition: all 200ms ease-in-out;
+    }
+
+    .showFormButton:hover {
+        cursor: pointer;
+        color: coral;
+        box-shadow: 1px 1px 10px white;
+    }
+
+    .showFormButton:active {
+        background-color: white;
+    }
 
     .taskForm {
         width: 20%;
@@ -15,23 +38,53 @@
         transition: all 200ms ease-in-out;
 
         .inputField {
-            width: 100%;
-            font-size: 1.4rem;
+            background: transparent;
+            outline: none;
+            border: none;
             color: coral;
-            transition: all 200ms ease-in-out;
+            font-size: 20px;
+            width: 100%;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 10px;
+            resize: none;
+            border-radius: 4px 4px 0px 0px;
+            border-bottom: solid rgb(117, 117, 117);
+            transition: all ease-in-out 200ms;
         }
+
+        .inputField:hover {
+            box-shadow: 0px 1px 20px white;
+        }
+
         .inputField:focus {
-            background-color: black;
+            background-color: rgb(44, 44, 44);
+            border-color: coral;
+            border-radius: 0.5rem;
         }
+
         .inputField:not(:focus) {
             font-size: 1.2rem;
             color: white;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #0c0c0c;
+            text-shadow: 0px 0px 5px white;
+            background: gray;
+            border-radius: 0.5rem;
+            display: inline-block;
+            width: fit-content;
+            padding: 0.3rem;
+            margin: 0.5rem 0rem 0.2rem 0rem;
         }
 
         .taskDetails {
             width: 30%;
             transition: all 200ms ease-in-out;
         }
+
         .taskBody {
             box-sizing: border-box;
             width: 100%;
@@ -39,7 +92,29 @@
             font-family: inherit;
             vertical-align: middle;
             outline: none;
+            background-color: white;
+        }
 
+        .submitBtn {
+            text-shadow: -1px 2px 1px black;
+            font-size: 1.2rem;
+            background: gray;
+            color: coral;
+            border: 1px solid #000000;
+            padding: 4px;
+            margin: 5px;
+            border-radius: 10px;
+            font-weight: 650;
+            width: fit-content;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 200ms ease-in-out;
+        }
+        .submitBtn:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+        }
+        .submitBtn:active {
             background-color: white;
         }
     }
