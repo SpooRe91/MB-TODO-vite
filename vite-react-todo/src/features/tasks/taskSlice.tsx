@@ -47,8 +47,14 @@ export const taskSliceActions = createSlice({
 
             if (state.tasks !== undefined && state.tasks.length > 0) {
                 const current = state.tasks.find(x => x.taskName === action.payload.taskName);
-                console.log(current);
+
                 state.tasks.splice(state.tasks.indexOf(action.payload.taskName), 1);
+                state.taskName = '';
+                state.taskBody = '';
+                state.taskStart = '';
+                state.taskEnd = '';
+                state.taskOwner = '';
+                state.taskId = '';
             } else {
                 null;
             }
