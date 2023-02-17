@@ -2,10 +2,126 @@
     width: 100%;
     display: flex;
     margin: 5rem 5rem;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    flex-direction: column;
+    gap: 5rem;
+    flex-direction: row;
+
+    .noTaksSign {
+        background-color: #461e1e;
+        line-height: 1.4;
+        letter-spacing: 0.3px;
+        width: 30%;
+        text-align: center;
+        height: min-content;
+        padding: 0.5rem;
+        border: 1px solid coral;
+        border-radius: 0.5rem;
+    }
+
+    .formContainer {
+        width: 30%;
+
+        .taskForm {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            flex-wrap: wrap;
+            transition: all 200ms ease-in-out;
+
+            .inputField {
+                background: transparent;
+                outline: none;
+                border: none;
+                color: chocolate;
+                font-size: 20px;
+                width: 100%;
+                display: inline-block;
+                box-sizing: border-box;
+                padding: 10px;
+                resize: none;
+                border-radius: 0.7rem 0.7rem 0px 0px;
+                border-bottom: solid rgb(117, 117, 117);
+                transition: all ease-in-out 200ms;
+            }
+
+            .inputField:hover {
+                box-shadow: 0px 1px 20px white;
+            }
+
+            .inputField:focus {
+                background-color: rgb(44, 44, 44);
+                border-color: whitesmoke;
+                border-radius: 0.5rem;
+            }
+
+            .inputField:not(:focus) {
+                font-size: 1.2rem;
+                color: coral;
+            }
+
+            .inputField::placeholder {
+                font-size: 1rem;
+                color: rgb(87, 87, 87);
+                transition: all 200ms ease-in-out;
+            }
+
+            .inputField:focus::placeholder {
+                font-size: 1.2rem;
+                color: rgb(119, 119, 119);
+            }
+
+            label {
+                font-size: 1.2rem;
+                color: #0c0c0c;
+                text-shadow: 0px 0px 5px white;
+                background: gray;
+                border-radius: 0.5rem;
+                display: inline-block;
+                width: fit-content;
+                padding: 0.3rem;
+                margin: 0.5rem 0rem 0.2rem 0rem;
+            }
+
+            .taskDetails {
+                width: 30%;
+                transition: all 200ms ease-in-out;
+            }
+
+            .taskBody {
+                box-sizing: border-box;
+                width: 100%;
+                height: 20rem;
+                font-family: inherit;
+                vertical-align: middle;
+                outline: none;
+                background-color: white;
+            }
+
+            .submitBtn {
+                text-shadow: -1px 2px 1px black;
+                font-size: 1.2rem;
+                background: gray;
+                color: coral;
+                border: 1px solid #000000;
+                padding: 4px;
+                margin: 5px;
+                border-radius: 10px;
+                font-weight: 650;
+                width: fit-content;
+                text-decoration: none;
+                letter-spacing: 1px;
+                transition: all 200ms ease-in-out;
+            }
+            .submitBtn:hover {
+                cursor: pointer;
+                box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
+            }
+            .submitBtn:active {
+                background-color: white;
+            }
+        }
+    }
 
     .showFormButton {
         width: 10rem;
@@ -29,96 +145,6 @@
         background-color: white;
     }
 
-    .taskForm {
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        flex-wrap: wrap;
-        transition: all 200ms ease-in-out;
-
-        .inputField {
-            background: transparent;
-            outline: none;
-            border: none;
-            color: coral;
-            font-size: 20px;
-            width: 100%;
-            display: inline-block;
-            box-sizing: border-box;
-            padding: 10px;
-            resize: none;
-            border-radius: 4px 4px 0px 0px;
-            border-bottom: solid rgb(117, 117, 117);
-            transition: all ease-in-out 200ms;
-        }
-
-        .inputField:hover {
-            box-shadow: 0px 1px 20px white;
-        }
-
-        .inputField:focus {
-            background-color: rgb(44, 44, 44);
-            border-color: coral;
-            border-radius: 0.5rem;
-        }
-
-        .inputField:not(:focus) {
-            font-size: 1.2rem;
-            color: white;
-        }
-
-        label {
-            font-size: 1.2rem;
-            color: #0c0c0c;
-            text-shadow: 0px 0px 5px white;
-            background: gray;
-            border-radius: 0.5rem;
-            display: inline-block;
-            width: fit-content;
-            padding: 0.3rem;
-            margin: 0.5rem 0rem 0.2rem 0rem;
-        }
-
-        .taskDetails {
-            width: 30%;
-            transition: all 200ms ease-in-out;
-        }
-
-        .taskBody {
-            box-sizing: border-box;
-            width: 100%;
-            height: 20rem;
-            font-family: inherit;
-            vertical-align: middle;
-            outline: none;
-            background-color: white;
-        }
-
-        .submitBtn {
-            text-shadow: -1px 2px 1px black;
-            font-size: 1.2rem;
-            background: gray;
-            color: coral;
-            border: 1px solid #000000;
-            padding: 4px;
-            margin: 5px;
-            border-radius: 10px;
-            font-weight: 650;
-            width: fit-content;
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: all 200ms ease-in-out;
-        }
-        .submitBtn:hover {
-            cursor: pointer;
-            box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
-        }
-        .submitBtn:active {
-            background-color: white;
-        }
-    }
-
     .newTasksContaner {
         width: 35%;
         display: flex;
@@ -126,11 +152,46 @@
 
         .taskItem {
             width: 100%;
-            background-color: black;
+            color: coral;
+            font-size: 1.4rem;
             display: flex;
             flex-direction: column;
             border: 1px solid coral;
             flex-wrap: nowrap;
+            border-radius: 1rem;
+            overflow: hidden;
+            padding: 0.5rem;
+            box-shadow: 0px 0px 11px 1px #a59494;
+            backdrop-filter: brightness(0.4);
+
+            .buttonsContainer {
+                display: flex;
+                gap: 2rem;
+                padding: 0.2rem;
+                flex-wrap: wrap;
+
+                button {
+                    margin: 0.2rem;
+                    padding: 0.4rem;
+                    width: 8rem;
+                    border: 1px solid rgba(255, 127, 80, 0.514);
+                    border-radius: 0.8rem;
+                    transition: all 200ms ease-in-out;
+                }
+
+                button:hover {
+                    cursor: pointer;
+                    background-color: #0c0c0c;
+                    box-shadow: 0.2rem 0.1rem 1rem white;
+                }
+
+                button:active {
+                    cursor: pointer;
+                    background-color: #ffffff;
+                    color: black;
+                    box-shadow: 0.2rem 0.1rem 1rem rgb(0, 0, 0);
+                }
+            }
         }
     }
 }
