@@ -24,11 +24,13 @@ const TaskComponent = (task: Task) => {
         <div className={styles.taskItem}>
             <p className={styles.taskDetails}>{task.taskName}</p>
             <p className={styles.taskBody}>{task.taskBody}</p>
-            <button type='button' onClick={() => setToDelete(state => !state)}>Delete task</button>
-            <button type='button' onClick={() => handleShowMoreInfo()}>More info...</button>
+            <div className={styles.buttonsContainer}>
+                <button type='button' onClick={() => setToDelete(state => !state)}>Delete task</button>
+                <button type='button' onClick={() => handleShowMoreInfo()}>More info...</button>
+            </div>
             {toDelete
                 ?
-                <div>
+                <div className={styles.buttonsContainer}>
                     <p>Are you sure you want to delete this task?</p>
                     <button onClick={() => handleDeleteConfirm()}> Yes</button>
                     <button onClick={() => handleDeleteCancel()}>No</button>
