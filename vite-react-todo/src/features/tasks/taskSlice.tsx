@@ -4,8 +4,8 @@ import type { RootState } from '../../App/store';
 export interface Task {
     taskName: string,
     taskBody: '',
-    taskStart: string,
-    taskEnd?: string,
+    taskStart: number | string,
+    taskEnd: number | string,
     taskOwner?: string,
     taskId: string,
     tasks?: Task[],
