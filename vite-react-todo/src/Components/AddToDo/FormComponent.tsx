@@ -43,7 +43,7 @@ const FormComponent = () => {
                 type="text"
                 id="taskName"
                 name="taskName"
-                placeholder='Task Name'
+                placeholder='Task Name...'
                 onChange={(e) => changeHandler(e)}
                 value={data.taskName}
                 required
@@ -65,7 +65,7 @@ const FormComponent = () => {
                 type="text"
                 id="taskOwner"
                 name="taskOwner"
-                placeholder='John Smith'
+                placeholder='John Smith...'
                 onChange={(e) => changeHandler(e)}
                 value={data.taskOwner}
                 required
@@ -73,21 +73,22 @@ const FormComponent = () => {
             <label htmlFor="taskStart">Task start date</label>
             <input
                 className={styles.inputField}
-                type="text"
+                type="date"
                 id="taskStart"
                 name="taskStart"
-                placeholder='01.01.2023'
+                placeholder='01.01.2023...'
+                required pattern="\d{4}-\d{2}-\d{2}"
                 onChange={(e) => changeHandler(e)}
                 value={data.taskStart}
-                required
             />
             <label htmlFor="taskEnd">Task end date (optional)</label>
             <input
                 className={styles.inputField}
-                type="text"
+                type="date"
                 id="taskEnd"
                 name="taskEnd"
-                placeholder='01.01.2023'
+                placeholder='01.01.2023...'
+                required pattern="\d{4}-\d{2}-\d{2}"
                 onChange={(e) => changeHandler(e)}
                 value={data.taskEnd}
             />
