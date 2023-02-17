@@ -16,27 +16,42 @@ const AddToDo = () => {
     return (
 
         <div className={styles.main}>
-            <button className={styles.showFormButton} onClick={() => setToAddTask(state => !state)}>{toAddTask ? 'Hide task from' : 'Show task form'}</button>
-            {
-                toAddTask
-                    ?
-                    <FormComponent />
-                    : null
-            }
-            <div className={styles.newTasksContaner}>
-                <h2>New Tasks</h2>
+            <div>
+                <button className={styles.showFormButton} onClick={() => setToAddTask(state => !state)}>{toAddTask ? 'Hide task from' : 'Show task form'}</button>
+            </div>
+            <section className={styles.formContainer}>
                 {
-                    tasksState?.tasks !== undefined
+                    toAddTask
                         ?
-                        tasksState?.tasks.map((task) => {
-                            return (
-                                <TaskComponent key={nanoid()} {...task} />
-                            )
-                        })
+                        <FormComponent />
                         :
                         null
                 }
-            </div>
+            </section>
+            {
+                tasksState?.tasks !== undefined && tasksState.tasks.length !== 0
+                    ?
+                    <section className={styles.newTasksContaner}>
+
+                        {
+
+                            <>
+                                <h2>New Tasks</h2>
+                                {
+                                    tasksState?.tasks.map((task) => {
+                                        return (
+                                            <TaskComponent key={nanoid()} {...task} />
+                                        )
+                                    })
+                                }
+                            </>
+                        }
+                    </section>
+                    :
+                    <h2 className={styles.noTaksSign}>
+                        There are no tasks yet, add one from the add task form. You can use the button "Show task form" if the form is not visible!
+                    </h2>
+            }
         </div>
     )
 }
