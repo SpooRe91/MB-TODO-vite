@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
-
+import { Suspense, useState } from 'react';
 
 import styles from "./AddToDo.module.scss";
-
+import LoadingComponent from './LoadingComponent';
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
 import { Task, taskState, deleteTask } from '../../features/tasks/taskSlice';
+import TaskAdditionalInfo from './TaskAdditionalInfo';
 
 const TaskComponent = (task: Task) => {
 
@@ -22,11 +21,29 @@ const TaskComponent = (task: Task) => {
 
     return (
         <div className={styles.taskItem}>
+            <h3 className={styles.taskName}>Task name</h3>
             <p className={styles.taskDetails}>{task.taskName}</p>
+
+            <h3 className={styles.taskBody}>Task body</h3>
             <p className={styles.taskBody}>{task.taskBody}</p>
+
             <div className={styles.buttonsContainer}>
-                <button type='button' onClick={() => setToDelete(state => !state)}>Delete task</button>
-                <button type='button' onClick={() => handleShowMoreInfo()}>More info...</button>
+                <button
+                    type='button'
+                    style={toShowMoreInfo
+                        ? { color: 'white', backgroundColor: "grey" }
+                        : { color: 'white', backgroundColor: 'transparent' }}
+                    onClick={() => handleShowMoreInfo()}>
+                    {toShowMoreInfo ? 'Show less info' : 'Show more info'}
+                </button>
+                <button
+                    type='button'
+                    style={toDelete
+                        ? { color: 'white', backgroundColor: "grey" }
+                        : { color: 'white', backgroundColor: 'transparent' }}
+                    onClick={() => setToDelete(state => !state)}>
+                    Delete task
+                </button>
             </div>
             {toDelete
                 ?
@@ -40,19 +57,7 @@ const TaskComponent = (task: Task) => {
             {
                 toShowMoreInfo
                     ?
-                    <div className={styles.taskItem}>
-                        <p>Task start date</p>
-                        <p>{tasksState.taskStart}</p>
-                        {
-                            tasksState.taskEnd ?
-                                <>
-                                    <p>Task end date</p>
-                                    <p>{tasksState.taskStart}</p>
-                                </>
-                                : null
-                        }
-                        <p className={styles.taskDetails}>Task created by: {task.taskOwner}</p>
-                    </div>
+                    <TaskAdditionalInfo />
                     : null
             }
         </div>
