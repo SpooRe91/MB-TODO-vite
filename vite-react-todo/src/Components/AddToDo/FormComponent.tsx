@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
-import { taskState, addTask, clearError } from '../../features/tasks/taskSlice';
+import { taskState, addTask } from '../../features/tasks/taskSlice';
 
 import styles from "./AddToDo.module.scss";
 
@@ -9,10 +9,19 @@ const FormComponent = () => {
     const tasksState = useAppSelector(taskState);
     const dispatch = useAppDispatch();
 
-    const [data, setData] = useState({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [data, setData] = useState({
+        taskName: '',
+        taskBody: '',
+        taskStart: '',
+        taskEnd: '',
+        taskOwner: ''
+    });
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-        console.log("submitted");
+
+        setErrorMessage(state => '');
         setData(state => ({
             ...state,
             [e.target.name]: e.target.value
@@ -20,19 +29,19 @@ const FormComponent = () => {
     }
 
 
-    const submitTask = (e: React.FormEvent<EventTarget>) => {
-        console.log("submitted");
-        e.preventDefault();
-        dispatch(addTask(data));
-        setData(state => ({ ...state }));
+    const submitTask = (e: React.FormEvent<HTMLFormElement>) => {
 
-        if (tasksState.error) {
-            return setData(state => ({ ...state, taskName: '', }));
+        e.preventDefault();
+
+        if (tasksState.tasks?.find(task => task.taskName === data.taskName)) {
+            return setErrorMessage(state => 'This name already exists!');
         }
+
+        dispatch(addTask(data));
         setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
     }
 
-    const handleClearError = () => dispatch(clearError());
+    // const handleClearError = () => dispatch(clearError());
 
 
     return (
@@ -48,6 +57,7 @@ const FormComponent = () => {
                 value={data.taskName}
                 required
             />
+            <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
 
             <label htmlFor="taskBody">Task body</label>
             <textarea
@@ -81,7 +91,7 @@ const FormComponent = () => {
                 onChange={(e) => changeHandler(e)}
                 value={data.taskStart}
             />
-            <label htmlFor="taskEnd">Task end date (optional)</label>
+            <label htmlFor="taskEnd">Task end date</label>
             <input
                 className={styles.inputField}
                 type="date"
@@ -92,17 +102,7 @@ const FormComponent = () => {
                 onChange={(e) => changeHandler(e)}
                 value={data.taskEnd}
             />
-            <input type="submit" className={styles.submitBtn} />
-            {
-                tasksState.error
-                    ?
-                    <div>
-                        <p>{tasksState.error}</p>
-                        <button onClick={() => handleClearError()}>OK</button>
-                    </div>
-                    :
-                    null
-            }
+            <button type="submit" className={styles.submitBtn}>Submit</button>
         </form>
     )
 }
