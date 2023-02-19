@@ -37,6 +37,11 @@
             flex-wrap: wrap;
             transition: all 200ms ease-in-out;
 
+            .errorMessage {
+                color: red;
+                font-size: 1.5rem;
+            }
+
             .inputField {
                 background: transparent;
                 outline: none;
