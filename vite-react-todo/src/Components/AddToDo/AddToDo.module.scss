@@ -6,11 +6,19 @@
     gap: 5rem;
     flex-direction: row;
 
+    .loaderComp {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        color: coral;
+    }
+
     .noTaksSign {
         background-color: #461e1e;
         line-height: 1.4;
         letter-spacing: 0.3px;
-        width: 30%;
+        width: 35%;
         text-align: center;
         height: min-content;
         padding: 0.5rem;
@@ -38,7 +46,8 @@
                 width: 100%;
                 display: inline-block;
                 box-sizing: border-box;
-                padding: 10px;
+                padding: 0.4rem;
+                text-indent: 0.2rem;
                 resize: none;
                 border-radius: 0.7rem 0.7rem 0px 0px;
                 border-bottom: solid rgb(117, 117, 117);
@@ -71,31 +80,20 @@
                 color: rgb(119, 119, 119);
             }
 
+            .inputField {
+                margin-bottom: 0.5rem;
+            }
+
             label {
                 font-size: 1.2rem;
-                color: #0c0c0c;
+                color: #ffffff;
                 text-shadow: 0px 0px 5px white;
-                background: gray;
+                background: transparent;
                 border-radius: 0.5rem;
                 display: inline-block;
                 width: fit-content;
-                padding: 0.3rem;
+                padding: 0.5rem;
                 margin: 0.5rem 0rem 0.2rem 0rem;
-            }
-
-            .taskDetails {
-                width: 30%;
-                transition: all 200ms ease-in-out;
-            }
-
-            .taskBody {
-                box-sizing: border-box;
-                width: 100%;
-                height: 20rem;
-                font-family: inherit;
-                vertical-align: middle;
-                outline: none;
-                background-color: white;
             }
 
             .submitBtn {
@@ -108,15 +106,17 @@
                 margin: 5px;
                 border-radius: 10px;
                 font-weight: 650;
-                width: fit-content;
+                width: 11rem;
                 text-decoration: none;
                 letter-spacing: 1px;
                 transition: all 200ms ease-in-out;
             }
+
             .submitBtn:hover {
                 cursor: pointer;
                 box-shadow: 0px 0px 10px white, 0px 0px 10px coral;
             }
+
             .submitBtn:active {
                 background-color: white;
             }
@@ -148,7 +148,19 @@
     .newTasksContaner {
         width: 35%;
         display: flex;
+        gap: 1.5rem;
         flex-direction: column;
+
+        h2 {
+            color: white;
+            text-align: center;
+            font-size: 2.5rem;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0px 0px 11px 1px #a59494;
+            backdrop-filter: brightness(0.4);
+        }
 
         .taskItem {
             width: 100%;
@@ -160,22 +172,44 @@
             flex-wrap: nowrap;
             border-radius: 1rem;
             overflow: hidden;
-            padding: 0.5rem;
+            padding: 0.7rem;
             box-shadow: 0px 0px 11px 1px #a59494;
             backdrop-filter: brightness(0.4);
 
+            .taskDetails {
+                width: 30%;
+                transition: all 200ms ease-in-out;
+            }
+
+            .taskBody {
+                box-sizing: border-box;
+                width: 100%;
+                font-family: inherit;
+                vertical-align: middle;
+            }
+            h3.taskName,
+            h3.taskBody,
+            .taskOwner,
+            .taskStart,
+            .taskEnd {
+                color: white;
+                text-decoration: underline;
+                font-weight: 760;
+            }
+
             .buttonsContainer {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 2rem;
                 padding: 0.2rem;
-                flex-wrap: wrap;
 
                 button {
                     margin: 0.2rem;
                     padding: 0.4rem;
-                    width: 8rem;
+                    width: 11rem;
                     border: 1px solid rgba(255, 127, 80, 0.514);
                     border-radius: 0.8rem;
+                    background-color: transparent;
                     transition: all 200ms ease-in-out;
                 }
 
