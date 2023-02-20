@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styles from "../AddToDo/AddToDo.module.scss";
 import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
 
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
 import { ITask, deleteTask } from '../../features/tasks/taskSlice';
-import { globalState, setLoading, setToDelete } from '../../features/globalSlice';
+import { globalState, setToDelete } from '../../features/globalSlice';
 
 const TaskComponent = (task: ITask) => {
 
