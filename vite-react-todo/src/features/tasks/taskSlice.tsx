@@ -1,17 +1,17 @@
-import { createSlice, prepareAutoBatched } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../../App/store';
 
-export interface Task {
+export interface ITask {
     taskName: string,
     taskBody: '',
     taskStart: number | string,
     taskEnd: number | string,
     taskOwner?: string,
     taskId: string,
-    tasks?: Task[],
+    tasks?: ITask[],
 }
 
-const initialState: Task = {
+const initialState: ITask = {
     taskName: '',
     taskBody: '',
     taskStart: '',
