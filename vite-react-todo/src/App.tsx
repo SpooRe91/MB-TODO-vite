@@ -3,24 +3,37 @@ import './ResetCSS.scss';
 
 import { useAppSelector } from './App/hooks';
 
-import AddToDo from './Components/AddToDo/AddToDo';
 import LoadingComponent from './Components/GlobalComponents/LoadingComponent';
 
+
 import { globalState } from './features/globalSlice';
+import { Suspense, lazy } from 'react';
+
+const AddToDo = lazy(() => import('./Components/AddToDo/AddToDo'));
+const FormComponent = lazy(() => import('./Components/FormComponent/FormComponent'));
 
 function App() {
-  const loadState = useAppSelector(globalState);
+  const globalStateData = useAppSelector(globalState);
 
   return (
     <main>
       {
-        loadState.loading
+        globalStateData.loading
           ?
           <div className="loaderComp">
             <LoadingComponent />
           </div>
           : null
       }
+      <Suspense fallback={<LoadingComponent />}>
+        {
+          globalStateData.showForm
+            ?
+            <FormComponent />
+            :
+            null
+        }
+      </Suspense>
       <AddToDo />
     </main >
   )
