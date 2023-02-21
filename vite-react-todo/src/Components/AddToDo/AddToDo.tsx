@@ -1,22 +1,21 @@
 import { nanoid } from '@reduxjs/toolkit';
+import { useState, lazy, Suspense } from 'react';
+
+import LoadingComponent from '../GlobalComponents/LoadingComponent';
 
 import styles from "./AddToDo.module.scss";
-
-import { useState, lazy, Suspense } from 'react';
 import { taskState } from '../../features/tasks/taskSlice';
 import { useAppSelector } from '../../App/hooks';
-import LoadingComponent from './LoadingComponent';
+
+const FormComponent = lazy(() => import('../FormComponent/FormComponent'));
+const TaskComponent = lazy(() => import('../TaskComponent/TaskComponent'));
 
 const AddToDo = () => {
 
     const tasksState = useAppSelector(taskState);
     const [toAddTask, setToAddTask] = useState(false);
 
-    const FormComponent = lazy(() => import('./FormComponent'));
-    const TaskComponent = lazy(() => import('./TaskComponent'));
-
     return (
-
         <div className={styles.main}>
             <div>
                 <button
@@ -25,7 +24,6 @@ const AddToDo = () => {
                     {toAddTask ? 'Hide task from' : 'Show task form'}
                 </button>
             </div>
-
             <section className={styles.formContainer}>
                 {
                     toAddTask
@@ -38,12 +36,17 @@ const AddToDo = () => {
                 }
             </section>
             {
-                tasksState?.tasks !== undefined && tasksState.tasks.length !== 0
+                tasksState?.tasks !== undefined && tasksState.tasks?.length !== 0
                     ?
                     <section className={styles.newTasksContaner}>
 
                         {
-                            <Suspense fallback={<LoadingComponent />}>
+                            <Suspense fallback={
+                                <>
+                                    <LoadingComponent />
+                                    <p className={styles.loadingText}>Loading tasks</p>
+                                </>
+                            }>
                                 <>
                                     <h2>New Tasks</h2>
                                     {
