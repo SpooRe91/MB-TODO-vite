@@ -8,7 +8,7 @@ const TaskAdditionalInfoComponent = () => {
     const tasksState = useAppSelector(taskState);
 
     return (
-        <div className={styles.taskItem}>
+        <div className={styles.details}>
             <p className={styles.taskStart}>Task start date</p>
             <p>{tasksState.taskStart}</p>
             {
