@@ -1,65 +1,55 @@
 import { nanoid } from '@reduxjs/toolkit';
-import { useState, lazy, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 
+import TaskComponent from '../TaskComponent/TaskComponent';
 import LoadingComponent from '../GlobalComponents/LoadingComponent';
 
 import styles from "./AddToDo.module.scss";
+import { globalState, setToShowForm } from '../../features/globalSlice';
 import { taskState } from '../../features/tasks/taskSlice';
-import { useAppSelector } from '../../App/hooks';
-
-const FormComponent = lazy(() => import('../FormComponent/FormComponent'));
-const TaskComponent = lazy(() => import('../TaskComponent/TaskComponent'));
+import { useAppDispatch, useAppSelector } from '../../App/hooks';
 
 const AddToDo = () => {
-
+    const dispatch = useAppDispatch();
     const tasksState = useAppSelector(taskState);
-    const [toAddTask, setToAddTask] = useState(false);
+    const globalStateData = useAppSelector(globalState);
 
     return (
         <div className={styles.main}>
             <div>
                 <button
                     className={styles.showFormButton}
-                    onClick={() => setToAddTask(state => !state)}>
-                    {toAddTask ? 'Hide task from' : 'Show task form'}
+                    onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
+                    {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
                 </button>
             </div>
-            <section className={styles.formContainer}>
-                {
-                    toAddTask
-                        ?
-                        <Suspense fallback={<LoadingComponent />}>
-                            <FormComponent />
-                        </Suspense>
-                        :
-                        null
-                }
-            </section>
             {
                 tasksState?.tasks !== undefined && tasksState.tasks?.length !== 0
                     ?
-                    <section className={styles.newTasksContaner}>
+                    <>
+                        <h2 className={styles.tasksContanerHeader}>New Tasks</h2>
+                        <section className={styles.newTasksContaner}>
 
-                        {
-                            <Suspense fallback={
-                                <>
-                                    <LoadingComponent />
-                                    <p className={styles.loadingText}>Loading tasks</p>
-                                </>
-                            }>
-                                <>
-                                    <h2>New Tasks</h2>
-                                    {
-                                        tasksState?.tasks.map((task) => {
-                                            return (
-                                                <TaskComponent key={nanoid()} {...task} />
-                                            )
-                                        })
-                                    }
-                                </>
-                            </Suspense>
-                        }
-                    </section>
+                            {
+                                <Suspense fallback={
+                                    <p>
+                                        <LoadingComponent />
+                                        <p className={styles.loadingText}>Loading tasks</p>
+                                    </p>
+                                }>
+                                    <>
+                                        {
+                                            tasksState?.tasks.map((task) => {
+                                                return (
+                                                    <TaskComponent key={nanoid()} {...task} />
+                                                )
+                                            })
+                                        }
+                                    </>
+                                </Suspense>
+                            }
+                        </section>
+                    </>
                     :
                     <div className={styles.noTaksSign}>
                         <h2>There are no tasks yet, add one from the add task form. </h2>
