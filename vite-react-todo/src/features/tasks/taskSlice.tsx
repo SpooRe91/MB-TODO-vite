@@ -39,7 +39,7 @@ export const taskSliceActions = createSlice({
 
         deleteTask: (state, action) => {
 
-            if (state.tasks !== undefined && state.tasks.length > 0) {
+            if (state.tasks !== undefined && state.tasks?.length > 0) {
 
                 state.tasks.splice(state.tasks.indexOf(action.payload.taskName), 1);
                 state.taskName = '';
