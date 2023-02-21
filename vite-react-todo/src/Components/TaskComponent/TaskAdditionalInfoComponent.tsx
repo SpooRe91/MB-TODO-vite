@@ -1,14 +1,17 @@
 import styles from "../AddToDo/AddToDo.module.scss";
 
-import { taskState } from '../../features/tasks/taskSlice';
+import { ITask, taskState } from '../../features/tasks/taskSlice';
 import { useAppSelector } from '../../App/hooks';
 
-const TaskAdditionalInfoComponent = () => {
+const TaskAdditionalInfoComponent = (task: ITask) => {
 
     const tasksState = useAppSelector(taskState);
 
     return (
-        <div className={styles.details}>
+        <div className={styles.addDetails}>
+            <h3 className={styles.taskBody}>Task body</h3>
+            <p className={styles.taskBody}>{task.taskBody}</p>
+
             <p className={styles.taskStart}>Task start date</p>
             <p>{tasksState.taskStart}</p>
             {

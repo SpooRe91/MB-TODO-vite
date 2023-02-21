@@ -94,17 +94,26 @@
             box-shadow: 0px 0px 11px 1px #a59494;
             backdrop-filter: brightness(0.4);
 
+            .addDetails {
+                padding: 0.4rem;
+            }
+
             .taskDetails {
                 width: 30%;
                 transition: all 200ms ease-in-out;
             }
-
             .taskBody {
                 box-sizing: border-box;
                 width: 100%;
                 font-family: inherit;
                 vertical-align: middle;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                line-height: 30px;
+                word-spacing: 0.2mm;
+                letter-spacing: 0.4mm;
             }
+
             h3.taskName,
             h3.taskBody,
             .taskOwner,

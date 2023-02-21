@@ -26,9 +26,6 @@ const TaskComponent = (task: ITask) => {
             <h3 className={styles.taskName}>Task name</h3>
             <p className={styles.taskDetails}>{task.taskName}</p>
 
-            <h3 className={styles.taskBody}>Task body</h3>
-            <p className={styles.taskBody}>{task.taskBody}</p>
-
             <div className={styles.buttonsContainer}>
                 <button
                     type='button'
@@ -61,7 +58,7 @@ const TaskComponent = (task: ITask) => {
             {
                 toShowMoreInfo
                     ?
-                    <TaskAdditionalInfoComponent />
+                    <TaskAdditionalInfoComponent {...task} />
                     : null
             }
         </div >
