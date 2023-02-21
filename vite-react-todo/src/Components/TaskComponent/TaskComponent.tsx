@@ -5,39 +5,21 @@ import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
 
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
 import { ITask, deleteTask } from '../../features/tasks/taskSlice';
-import { globalState, setToDelete } from '../../features/globalSlice';
+import { globalState } from '../../features/globalSlice';
 
 const TaskComponent = (task: ITask) => {
 
     const dispatch = useAppDispatch();
-
     const globalStateData = useAppSelector(globalState);
+
+    const [toShowDelete, setToShowDelete] = useState(globalStateData.toDelete);
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
 
-
-    const showDeleteOptions = () => {
-        dispatch(setToDelete({
-            loading: !globalStateData.loading,
-            toDelete: !globalStateData.toDelete
-        }));
-    };
-
-    const handleDeleteConfirm = () => {
-        dispatch(deleteTask(task.taskName));
-        dispatch(setToDelete({
-            loading: false,
-            toDelete: false
-        }));
-    }
-
-    const handleDeleteCancel = () => {
-        dispatch(setToDelete({
-            loading: false,
-            toDelete: false
-        }));
-    }
-
+    const showDeleteOptions = () => setToShowDelete(state => !state);
+    const handleDeleteConfirm = () => { dispatch(deleteTask(task.taskName)) };
+    const handleDeleteCancel = () => setToShowDelete(state => false);
     const handleShowMoreInfo = () => settoShowMoreInfo(state => !state);
+
 
     return (
         <div className={styles.taskItem}>
@@ -67,7 +49,7 @@ const TaskComponent = (task: ITask) => {
             </div>
 
             {
-                globalStateData.toDelete
+                toShowDelete
                     ?
                     <div className={styles.buttonsContainer}>
                         <p>Are you sure you want to delete this task?</p>
