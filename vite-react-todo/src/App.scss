@@ -1,8 +1,12 @@
-.loaderComp {
-    position: sticky;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 100;
-    color: coral;
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: relative;
+
+    .loaderComp {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+    }
 }
