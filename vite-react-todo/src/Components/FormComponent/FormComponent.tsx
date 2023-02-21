@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import styles from "../AddToDo/AddToDo.module.scss";
+import styles from "./FormComponent.module.scss";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
 import { taskState, addTask } from '../../features/tasks/taskSlice';
 
@@ -40,65 +40,67 @@ const FormComponent = () => {
     }
 
     return (
-        <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
-            <label htmlFor="taskName">Task name</label>
-            <input
-                className={styles.inputField}
-                type="text"
-                id="taskName"
-                name="taskName"
-                placeholder='Task Name...'
-                onChange={(e) => changeHandler(e)}
-                value={data.taskName}
-                required
-            />
-            <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
+        <section className={styles.formContainer}>
+            <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
+                <label htmlFor="taskName">Task name</label>
+                <input
+                    className={styles.inputField}
+                    type="text"
+                    id="taskName"
+                    name="taskName"
+                    placeholder='Task Name...'
+                    onChange={(e) => changeHandler(e)}
+                    value={data.taskName}
+                    required
+                />
+                <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
 
-            <label htmlFor="taskBody">Task body</label>
-            <textarea
-                className={styles.inputField}
-                id="taskBody"
-                name="taskBody"
-                placeholder='Task description...'
-                onChange={(e) => changeHandler(e)}
-                value={data.taskBody}
-                required
-            />
-            <label htmlFor="taskOwner">Task issued by</label>
-            <input
-                className={styles.inputField}
-                type="text"
-                id="taskOwner"
-                name="taskOwner"
-                placeholder='John Smith...'
-                onChange={(e) => changeHandler(e)}
-                value={data.taskOwner}
-                required
-            />
-            <label htmlFor="taskStart">Task start date</label>
-            <input
-                className={styles.inputField}
-                type="date"
-                id="taskStart"
-                name="taskStart"
-                placeholder='01.01.2023...'
-                required pattern="\d{4}-\d{2}-\d{2}"
-                onChange={(e) => changeHandler(e)}
-                value={data.taskStart}
-            />
-            <label htmlFor="taskEnd">Task end date</label>
-            <input
-                className={styles.inputField}
-                type="date"
-                id="taskEnd"
-                name="taskEnd"
-                placeholder='01.01.2023...'
-                required pattern="\d{4}-\d{2}-\d{2}"
-                onChange={(e) => changeHandler(e)}
-                value={data.taskEnd}
-            />
-            <button type="submit" className={styles.submitBtn}>Submit</button>
-        </form>
+                <label htmlFor="taskBody">Task body</label>
+                <textarea
+                    className={styles.inputField}
+                    id="taskBody"
+                    name="taskBody"
+                    placeholder='Task description...'
+                    onChange={(e) => changeHandler(e)}
+                    value={data.taskBody}
+                    required
+                />
+                <label htmlFor="taskOwner">Task issued by</label>
+                <input
+                    className={styles.inputField}
+                    type="text"
+                    id="taskOwner"
+                    name="taskOwner"
+                    placeholder='John Smith...'
+                    onChange={(e) => changeHandler(e)}
+                    value={data.taskOwner}
+                    required
+                />
+                <label htmlFor="taskStart">Task start date</label>
+                <input
+                    className={styles.inputField}
+                    type="date"
+                    id="taskStart"
+                    name="taskStart"
+                    placeholder='01.01.2023...'
+                    required pattern="\d{4}-\d{2}-\d{2}"
+                    onChange={(e) => changeHandler(e)}
+                    value={data.taskStart}
+                />
+                <label htmlFor="taskEnd">Task end date</label>
+                <input
+                    className={styles.inputField}
+                    type="date"
+                    id="taskEnd"
+                    name="taskEnd"
+                    placeholder='01.01.2023...'
+                    required pattern="\d{4}-\d{2}-\d{2}"
+                    onChange={(e) => changeHandler(e)}
+                    value={data.taskEnd}
+                />
+                <button type="submit" className={styles.submitBtn}>Submit</button>
+            </form>
+        </section>
     )
 }
 
