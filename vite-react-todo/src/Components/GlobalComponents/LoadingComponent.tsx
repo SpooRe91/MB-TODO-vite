@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import BarLoader from "react-spinners/BarLoader";
 
-import styles from "../AddToDo/AddToDo.module.scss";
+import styles from "./LoadingComponent.module.scss";
 
 const LoadingComponent = (props:
     DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>) => {
