@@ -6,9 +6,9 @@ export interface ITask {
     taskBody: '',
     taskStart: number | string,
     taskEnd: number | string,
-    taskOwner?: string,
+    taskOwner: string,
     taskId: string,
-    tasks?: ITask[],
+    tasks?: ITask[]
 }
 
 const initialState: ITask = {
@@ -18,7 +18,7 @@ const initialState: ITask = {
     taskEnd: '',
     taskOwner: '',
     taskId: '',
-    tasks: [],
+    tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks') || '') : []
 }
 
 export const taskSliceActions = createSlice({
@@ -33,7 +33,19 @@ export const taskSliceActions = createSlice({
             state.taskEnd = action.payload.taskEnd;
             state.taskOwner = action.payload.taskOwner;
             state.taskId = action.payload.id;
-            state.tasks?.push(action.payload);
+            // state.tasks?.push(action.payload);
+
+            if (localStorage.length > 0) {
+                const existing = JSON.parse(localStorage.getItem('tasks') || '');
+                localStorage.setItem('tasks', JSON.stringify(existing));
+                existing.push(action.payload)
+                localStorage.clear();
+                localStorage.setItem('tasks', JSON.stringify(existing));
+                state.tasks = existing;
+            } else {
+                localStorage.setItem('tasks', JSON.stringify([...[action.payload]]));
+                state.tasks = JSON.parse(localStorage.getItem('tasks') || '');
+            }
 
         },
 
@@ -41,20 +53,36 @@ export const taskSliceActions = createSlice({
 
             if (state.tasks !== undefined && state.tasks?.length > 0) {
 
-                state.tasks.splice(state.tasks.indexOf(action.payload.taskName), 1);
+
                 state.taskName = '';
                 state.taskBody = '';
                 state.taskStart = '';
                 state.taskEnd = '';
                 state.taskOwner = '';
                 state.taskId = '';
+
+                if (localStorage.length > 0) {
+                    const existing = JSON.parse(localStorage.getItem('tasks') || '');
+                    const toRemove = existing.find((el: { taskName: any; }) => el.taskName === action.payload);
+
+                    existing.splice(existing.indexOf(toRemove), 1);
+                    localStorage.clear();
+                    localStorage.setItem('tasks', JSON.stringify(existing));
+                    state.tasks = existing;
+                } else {
+                    localStorage.setItem('tasks', JSON.stringify([...[action.payload]]));
+                }
             } else {
                 null;
             }
+        },
+        deleteAllTasks: (state) => {
+            localStorage.setItem('tasks', JSON.stringify([]));
+            state.tasks = [];
         }
     }
 });
 
-export const { addTask, deleteTask } = taskSliceActions.actions;
+export const { addTask, deleteTask, deleteAllTasks } = taskSliceActions.actions;
 export const taskState = (state: RootState) => state.taskSlice; //as defined in the store file
 export default taskSliceActions.reducer;

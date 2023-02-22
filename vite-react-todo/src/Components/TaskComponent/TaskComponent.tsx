@@ -1,21 +1,21 @@
 import { useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import styles from "../AddToDo/AddToDo.module.scss";
 import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
 
-import { useAppDispatch, useAppSelector } from '../../App/hooks';
+import { useAppDispatch } from '../../App/hooks';
 import { ITask, deleteTask } from '../../features/tasks/taskSlice';
-import { globalState } from '../../features/globalSlice';
 
 const TaskComponent = (task: ITask) => {
 
     const dispatch = useAppDispatch();
-    const globalStateData = useAppSelector(globalState);
 
-    const [toShowDelete, setToShowDelete] = useState(globalStateData.toDelete);
+    const [toShowDelete, setToShowDelete] = useState(false);
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
 
-    const showDeleteOptions = () => setToShowDelete(state => !state);
+    const showDeleteOptions = () => { setToShowDelete(state => !state) };
     const handleDeleteConfirm = () => { dispatch(deleteTask(task.taskName)) };
     const handleDeleteCancel = () => setToShowDelete(state => false);
     const handleShowMoreInfo = () => settoShowMoreInfo(state => !state);
@@ -35,33 +35,33 @@ const TaskComponent = (task: ITask) => {
                     onClick={() => handleShowMoreInfo()}>
                     {toShowMoreInfo ? 'Show less info' : 'Show more info'}
                 </button>
-                <button
-                    type='button'
-                    style={globalStateData.toDelete
-                        ? { color: 'white', backgroundColor: "grey" }
-                        : { color: 'white', backgroundColor: 'transparent' }}
-                    onClick={() => showDeleteOptions()}>
-                    Delete task
-                </button>
+                {
+                    toShowDelete
+                        ?
+                        <div className={styles.buttonsContainer}>
+                            <button className={styles.deleteButtons} onClick={() => handleDeleteConfirm()}><FontAwesomeIcon icon={faCheckCircle} /></button>
+                            <button className={styles.deleteButtons} onClick={() => handleDeleteCancel()}><FontAwesomeIcon icon={faCircleXmark} /></button>
+                        </div>
+                        :
+                        <button
+                            type='button'
+                            style={toShowDelete
+                                ? { color: 'white', backgroundColor: "grey" }
+                                : { color: 'white', backgroundColor: 'transparent' }}
+                            onClick={() => setToShowDelete(state => !state)}>
+                            Delete task
+                        </button>
+                }
             </div>
-
-            {
-                toShowDelete
-                    ?
-                    <div className={styles.buttonsContainer}>
-                        <p>Are you sure you want to delete this task?</p>
-                        <button onClick={() => handleDeleteConfirm()}>Yes</button>
-                        <button onClick={() => handleDeleteCancel()}>No</button>
-                    </div>
-                    : null
-            }
             {
                 toShowMoreInfo
                     ?
-                    <TaskAdditionalInfoComponent {...task} />
+                    <div>
+                        <TaskAdditionalInfoComponent {...task} />
+                    </div>
                     : null
             }
-        </div >
+        </div>
     )
 }
 
