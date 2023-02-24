@@ -24,42 +24,40 @@ const AddToDo = () => {
                     onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
                     {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
                 </button>
-                {
-                    tasksState?.tasks !== undefined && tasksState.tasks?.length !== 0
-                        ?
-                        <button
-                            className={styles.removeAllTasks}
-                            onClick={() => setToDelete(state => !state)}>
-                            Delete all tasks
-                        </button>
-                        : null
-                }
-                {
-                    toDelete
-                        ?
-                        <>
-                            <p>Are you sure you want to delete all tasks.</p>
-                            <button
-                                className={styles.removeAllTasks}
-                                onClick={() => dispatch(deleteAllTasks())}>
-                                Yes
-                            </button>
-                            <button
-                                className={styles.removeAllTasks}
-                                onClick={() => setToDelete(false)}>
-                                No
-                            </button>
-                        </>
-                        : null
-                }
             </div>
             {
                 tasksState?.tasks !== undefined && tasksState.tasks?.length !== 0
                     ?
                     <>
                         <h2 className={styles.tasksContanerHeader}>Your Tasks</h2>
+                        <section>
+                            <div>
+                                <button
+                                    className={styles.removeAllTasks}
+                                    onClick={() => setToDelete(state => !state)}>
+                                    Delete all tasks
+                                </button>
+                                {
+                                    toDelete
+                                        ?
+                                        <>
+                                            <p>Are you sure you want to delete all tasks.</p>
+                                            <button
+                                                className={styles.removeAllTasks}
+                                                onClick={() => dispatch(deleteAllTasks())}>
+                                                Yes
+                                            </button>
+                                            <button
+                                                className={styles.removeAllTasks}
+                                                onClick={() => setToDelete(false)}>
+                                                No
+                                            </button>
+                                        </>
+                                        : null
+                                }
+                            </div>
+                        </section>
                         <section className={styles.newTasksContaner}>
-
                             {
                                 <Suspense fallback={
                                     <p>
