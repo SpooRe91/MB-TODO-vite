@@ -1,0 +1,115 @@
+.taskItemMain {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    flex-wrap: wrap;
+
+    .taskItem {
+        width: 100%;
+        color: coral;
+        font-size: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid coral;
+        flex-wrap: nowrap;
+        border-radius: 1rem;
+        overflow: hidden;
+        padding: 0.7rem;
+        box-shadow: 0px 0px 11px 1px #a59494;
+        backdrop-filter: brightness(0.4);
+
+        .addInfoOver {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .taskDetails {
+            width: 30%;
+            transition: all 100ms ease-in-out;
+        }
+
+        .taskBody {
+            box-sizing: border-box;
+            width: 100%;
+            font-family: inherit;
+            vertical-align: middle;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 30px;
+            word-spacing: 0.2mm;
+            letter-spacing: 0.4mm;
+        }
+
+        h3.taskName {
+            color: white;
+            text-decoration: underline;
+            font-weight: 760;
+        }
+
+        .buttonsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 0.2rem;
+
+            .deleteButtons {
+                margin: 0.2rem;
+                padding: 0.4rem;
+                width: 5rem;
+                svg {
+                    display: var(--fa-display, inline-block);
+                    height: 1em;
+                    font-size: 2.3rem;
+                    vertical-align: middle;
+                }
+            }
+
+            button {
+                margin: 0.2rem;
+                padding: 0.4rem;
+                width: 11rem;
+                border: 1px solid rgba(255, 127, 80, 0.514);
+                border-radius: 0.8rem;
+                background-color: transparent;
+                transition: all 100ms ease-in-out;
+            }
+
+            button:hover {
+                cursor: pointer;
+                background-color: #0c0c0c;
+                box-shadow: 0.2rem 0.1rem 1rem white;
+            }
+
+            button:active {
+                cursor: pointer;
+                background-color: #ffffff;
+                color: black;
+                box-shadow: 0.2rem 0.1rem 1rem rgb(0, 0, 0);
+            }
+        }
+    }
+    .addDetails {
+        width: 100%;
+        color: coral;
+        font-size: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid coral;
+        flex-wrap: nowrap;
+        border-radius: 1rem;
+        word-break: break-word;
+        overflow: hidden;
+        padding: 0.7rem;
+        box-shadow: 0px 0px 11px 1px #a59494;
+        backdrop-filter: brightness(0.4);
+
+        h3.taskBody,
+        .taskOwner,
+        .taskStart,
+        .taskEnd {
+            color: white;
+            text-decoration: underline;
+            font-weight: 760;
+        }
+    }
+}

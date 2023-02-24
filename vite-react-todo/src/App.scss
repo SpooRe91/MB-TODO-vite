@@ -3,6 +3,7 @@ main {
     flex-wrap: wrap;
     justify-content: space-evenly;
     position: relative;
+    flex-direction: column;
 
     .loaderComp {
         position: fixed;
