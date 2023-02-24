@@ -11,6 +11,7 @@ const FormComponent = () => {
     const dispatch = useAppDispatch();
 
     const [errorMessage, setErrorMessage] = useState('');
+    const [addedMessage, setaddedMessage] = useState('');
 
     const [data, setData] = useState({
         taskName: '',
@@ -35,12 +36,29 @@ const FormComponent = () => {
         if (tasksState.tasks?.find(task => task.taskName === data.taskName)) {
             return setErrorMessage(state => 'This name already exists!');
         }
-        dispatch(addTask(data));
-        setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
+        if (!errorMessage) {
+            dispatch(addTask(data));
+            setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
+            setaddedMessage(state => 'Task added!');
+        }
+    }
+
+    const handleAddedMessage = () => {
+        setaddedMessage(state => '');
     }
 
     return (
         <section className={styles.formContainer}>
+
+            {
+                addedMessage
+                    ?
+                    <div className={styles.addedContainer}>
+                        <p>{addedMessage}</p>
+                        <button onClick={() => handleAddedMessage()}>OK</button>
+                    </div>
+                    : null
+            }
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <label htmlFor="taskName">Task name</label>
                 <input
