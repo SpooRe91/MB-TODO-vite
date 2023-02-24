@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit';
-import { useState, Suspense, useEffect } from 'react';
+import { useState, Suspense } from 'react';
 
 import TaskComponent from '../TaskComponent/TaskComponent';
 import LoadingComponent from '../GlobalComponents/LoadingComponent';
@@ -78,7 +78,6 @@ const AddToDo = () => {
                                     </>
                                 </Suspense>
                             }
-
                         </section>
                     </>
                     :
