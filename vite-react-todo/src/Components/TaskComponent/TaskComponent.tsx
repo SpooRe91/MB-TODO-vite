@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
 import styles from "./TaskComp.module.scss";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { useAppDispatch } from '../../App/hooks';
 import { ITask, deleteTask } from '../../features/tasks/taskSlice';
@@ -39,8 +37,8 @@ const TaskComponent = (task: ITask) => {
                         toShowDelete
                             ?
                             <div className={styles.buttonsContainer}>
-                                <button className={styles.deleteButtons} onClick={() => handleDeleteConfirm()}><FontAwesomeIcon icon={faCheckCircle} /></button>
-                                <button className={styles.deleteButtons} onClick={() => handleDeleteCancel()}><FontAwesomeIcon icon={faCircleXmark} /></button>
+                                <button className={styles.deleteButtons} onClick={() => handleDeleteConfirm()}>Yes</button>
+                                <button className={styles.deleteButtons} onClick={() => handleDeleteCancel()}>No</button>
                             </div>
                             :
                             <button
