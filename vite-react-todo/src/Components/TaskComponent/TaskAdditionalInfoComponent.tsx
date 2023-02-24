@@ -1,6 +1,7 @@
-import styles from "../AddToDo/AddToDo.module.scss";
+import styles from "./TaskComp.module.scss";
 
 import { ITask } from '../../features/tasks/taskSlice';
+
 const TaskAdditionalInfoComponent = (task: ITask) => {
 
     return (
