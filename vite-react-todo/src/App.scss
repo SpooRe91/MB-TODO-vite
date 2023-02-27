@@ -1,9 +1,8 @@
 main {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    position: relative;
-    flex-direction: column;
+    justify-content: space-around;
 
     .loaderComp {
         position: fixed;
