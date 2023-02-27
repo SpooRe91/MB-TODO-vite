@@ -16,6 +16,11 @@ const AddToDo = () => {
 
     const [toDelete, setToDelete] = useState(false);
 
+    const handleDeleteAll = () => {
+        dispatch(deleteAllTasks())
+        setToDelete(state => false);
+    };
+
     return (
         <div className={styles.main}>
             <div>
@@ -30,10 +35,10 @@ const AddToDo = () => {
                     ?
                     <>
                         <h2 className={styles.tasksContanerHeader}>Your Tasks</h2>
-                        <section>
-                            <div>
+                        <section className={styles.deleteAllSection}>
+                            <div className={styles.deleteAllContainer}>
                                 <button
-                                    className={styles.removeAllTasks}
+                                    className={styles.deleteAllTasks}
                                     onClick={() => setToDelete(state => !state)}>
                                     Delete all tasks
                                 </button>
@@ -43,12 +48,12 @@ const AddToDo = () => {
                                         <>
                                             <p>Are you sure you want to delete all tasks.</p>
                                             <button
-                                                className={styles.removeAllTasks}
-                                                onClick={() => dispatch(deleteAllTasks())}>
+                                                className={styles.deleteAllTasks}
+                                                onClick={() => handleDeleteAll()}>
                                                 Yes
                                             </button>
                                             <button
-                                                className={styles.removeAllTasks}
+                                                className={styles.deleteAllTasks}
                                                 onClick={() => setToDelete(false)}>
                                                 No
                                             </button>
