@@ -1,4 +1,4 @@
-# vite-react-todo
+# MB-TODO
 A simple Vite-React TO DO app
 available at <a href="https://mb-todo.vercel.app" rel="nofollow" target=_blank>MB-TODO App</a>
 </br>
