@@ -1,19 +1,18 @@
 import './App.scss';
 import './ResetCSS.scss';
 
-import { useAppSelector } from './App/hooks';
+import { Suspense, lazy } from 'react';
+import { globalState, setToShowForm } from './features/globalSlice';
+import { useAppDispatch, useAppSelector } from './App/hooks';
 
 import LoadingComponent from './Components/GlobalComponents/LoadingComponent';
-
-
-import { globalState } from './features/globalSlice';
-import { Suspense, lazy } from 'react';
 
 const AddToDo = lazy(() => import('./Components/AddToDo/AddToDo'));
 const FormComponent = lazy(() => import('./Components/FormComponent/FormComponent'));
 
 function App() {
   const globalStateData = useAppSelector(globalState);
+  const dispatch = useAppDispatch();
 
   return (
     <main>
@@ -29,7 +28,9 @@ function App() {
         {
           globalStateData.showForm
             ?
-            <FormComponent />
+            <div className="formContainer" onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
+              <FormComponent />
+            </div>
             :
             null
         }
