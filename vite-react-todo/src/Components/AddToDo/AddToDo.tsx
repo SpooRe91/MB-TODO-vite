@@ -5,6 +5,7 @@ import TaskComponent from '../TaskComponent/TaskComponent';
 import LoadingComponent from '../GlobalComponents/LoadingComponent';
 
 import styles from "./AddToDo.module.scss";
+import { MdFormatListNumbered } from "react-icons/md";
 import { globalState, setToShowForm } from '../../features/globalSlice';
 import { taskState, deleteAllTasks } from '../../features/tasks/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
@@ -27,7 +28,7 @@ const AddToDo = () => {
                 <button
                     className={styles.showFormButton}
                     onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
-                    {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
+                    <MdFormatListNumbered /> {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
                 </button>
             </div>
             {

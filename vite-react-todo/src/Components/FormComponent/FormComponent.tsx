@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 
 import styles from "./FormComponent.module.scss";
+import {
+    MdOutlineDescription,
+    MdGrading,
+    MdPersonPin,
+    MdDateRange,
+} from "react-icons/md";
+import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
 import { taskState, addTask } from '../../features/tasks/taskSlice';
 
@@ -52,63 +59,75 @@ const FormComponent = () => {
 
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
-                <label htmlFor="taskName">Task name*</label>
-                <input
-                    className={styles.inputField}
-                    type="text"
-                    id="taskName"
-                    name="taskName"
-                    placeholder='Task Name...'
-                    onChange={(e) => changeHandler(e)}
-                    value={data.taskName}
-                    required
-                />
-                <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
+                <div className={styles.inputContainer}>
+                    <label htmlFor="taskName">
+                        <MdOutlineDescription className={styles.icon} /> Task name*
+                    </label>
 
-                <label htmlFor="taskBody">Task body*</label>
-                <textarea
-                    className={styles.inputField}
-                    id="taskBody"
-                    name="taskBody"
-                    placeholder='Task description...'
-                    onChange={(e) => changeHandler(e)}
-                    value={data.taskBody}
-                    required
-                />
-                <label htmlFor="taskOwner">Task issued by*</label>
-                <input
-                    className={styles.inputField}
-                    type="text"
-                    id="taskOwner"
-                    name="taskOwner"
-                    placeholder='John Smith...'
-                    onChange={(e) => changeHandler(e)}
-                    value={data.taskOwner}
-                    required
-                />
-                <label htmlFor="taskStart">Task start date*</label>
-                <input
-                    className={styles.inputField}
-                    type="date"
-                    id="taskStart"
-                    name="taskStart"
-                    placeholder='01.01.2023...'
-                    required pattern="\d{4}-\d{2}-\d{2}"
-                    onChange={(e) => changeHandler(e)}
-                    value={data.taskStart}
-                />
-                <label htmlFor="taskEnd">Task end date*</label>
-                <input
-                    className={styles.inputField}
-                    type="date"
-                    id="taskEnd"
-                    name="taskEnd"
-                    placeholder='01.01.2023...'
-                    required pattern="\d{4}-\d{2}-\d{2}"
-                    onChange={(e) => changeHandler(e)}
-                    value={data.taskEnd}
-                />
-                <button type="submit" className={styles.submitBtn}>Submit</button>
+                    <input
+                        className={styles.inputField}
+                        type="text"
+                        id="taskName"
+                        name="taskName"
+                        placeholder='Task Name...'
+                        onChange={(e) => changeHandler(e)}
+                        value={data.taskName}
+                        required
+                    />
+                </div>
+                <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
+                <div className={styles.inputContainer}>
+                    <label htmlFor="taskBody"><MdGrading className={styles.icon} /> Task body*</label>
+                    <textarea
+                        className={styles.inputField}
+                        id="taskBody"
+                        name="taskBody"
+                        placeholder='Task description...'
+                        onChange={(e) => changeHandler(e)}
+                        value={data.taskBody}
+                        required
+                    />
+                </div>
+                <div className={styles.inputContainer}>
+                    <label htmlFor="taskOwner"><MdPersonPin className={styles.icon} /> Task issued by*</label>
+                    <input
+                        className={styles.inputField}
+                        type="text"
+                        id="taskOwner"
+                        name="taskOwner"
+                        placeholder='John Smith...'
+                        onChange={(e) => changeHandler(e)}
+                        value={data.taskOwner}
+                        required
+                    />
+                </div>
+                <div className={styles.inputContainer}>
+                    <label htmlFor="taskStart"><MdDateRange className={styles.icon} /> Task start date*</label>
+                    <input
+                        className={styles.inputField}
+                        type="date"
+                        id="taskStart"
+                        name="taskStart"
+                        placeholder='01.01.2023...'
+                        required pattern="\d{4}-\d{2}-\d{2}"
+                        onChange={(e) => changeHandler(e)}
+                        value={data.taskStart}
+                    />
+                </div>
+                <div className={styles.inputContainer}>
+                    <label htmlFor="taskEnd"><MdDateRange className={styles.icon} /> Task end date*</label>
+                    <input
+                        className={styles.inputField}
+                        type="date"
+                        id="taskEnd"
+                        name="taskEnd"
+                        placeholder='01.01.2023...'
+                        required pattern="\d{4}-\d{2}-\d{2}"
+                        onChange={(e) => changeHandler(e)}
+                        value={data.taskEnd}
+                    />
+                </div>
+                <button type="submit" className={styles.submitBtn}> Submit <BsFillCheckCircleFill /> </button>
             </form>
             {
                 addedMessage
