@@ -60,7 +60,8 @@ const FormComponent = () => {
                     : null
             }
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
-                <label htmlFor="taskName">Task name</label>
+                <h3>Add task form</h3>
+                <label htmlFor="taskName">Task name*</label>
                 <input
                     className={styles.inputField}
                     type="text"
@@ -73,7 +74,7 @@ const FormComponent = () => {
                 />
                 <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
 
-                <label htmlFor="taskBody">Task body</label>
+                <label htmlFor="taskBody">Task body*</label>
                 <textarea
                     className={styles.inputField}
                     id="taskBody"
@@ -83,7 +84,7 @@ const FormComponent = () => {
                     value={data.taskBody}
                     required
                 />
-                <label htmlFor="taskOwner">Task issued by</label>
+                <label htmlFor="taskOwner">Task issued by*</label>
                 <input
                     className={styles.inputField}
                     type="text"
@@ -94,7 +95,7 @@ const FormComponent = () => {
                     value={data.taskOwner}
                     required
                 />
-                <label htmlFor="taskStart">Task start date</label>
+                <label htmlFor="taskStart">Task start date*</label>
                 <input
                     className={styles.inputField}
                     type="date"
@@ -105,7 +106,7 @@ const FormComponent = () => {
                     onChange={(e) => changeHandler(e)}
                     value={data.taskStart}
                 />
-                <label htmlFor="taskEnd">Task end date</label>
+                <label htmlFor="taskEnd">Task end date*</label>
                 <input
                     className={styles.inputField}
                     type="date"
