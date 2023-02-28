@@ -15,4 +15,7 @@
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  overflow-y: overlay;
+  overflow-x: overlay;
 }
