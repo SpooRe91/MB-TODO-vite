@@ -50,15 +50,6 @@ const FormComponent = () => {
     return (
         <section className={styles.formContainer}>
 
-            {
-                addedMessage
-                    ?
-                    <div className={styles.addedContainer}>
-                        <p>{addedMessage}</p>
-                        <button onClick={() => handleAddedMessage()}>OK</button>
-                    </div>
-                    : null
-            }
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
                 <label htmlFor="taskName">Task name*</label>
@@ -119,6 +110,15 @@ const FormComponent = () => {
                 />
                 <button type="submit" className={styles.submitBtn}>Submit</button>
             </form>
+            {
+                addedMessage
+                    ?
+                    <div className={styles.addedContainer}>
+                        <p>{addedMessage}</p>
+                        <button onClick={() => handleAddedMessage()}>OK</button>
+                    </div>
+                    : null
+            }
         </section>
     )
 }
