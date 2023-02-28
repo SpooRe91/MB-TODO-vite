@@ -56,7 +56,11 @@ const TaskComponent = (task: ITask) => {
             </div>
             {
                 toShowMoreInfo
-                    ? <TaskAdditionalInfoComponent {...task} />
+                    ?
+                    <TaskAdditionalInfoComponent
+                        task={task}
+                        toShowMoreInfo={toShowMoreInfo}
+                        settoShowMoreInfo={settoShowMoreInfo} />
                     : null
             }
         </div>

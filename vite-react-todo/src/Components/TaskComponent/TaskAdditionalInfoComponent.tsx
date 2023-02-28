@@ -1,8 +1,17 @@
 import styles from "./TaskComp.module.scss";
 
 import { ITask } from '../../features/tasks/taskSlice';
+import { useState } from "react";
 
-const TaskAdditionalInfoComponent = (task: ITask) => {
+interface ITaskProps {
+    task: ITask,
+    toShowMoreInfo: boolean,
+    settoShowMoreInfo: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const TaskAdditionalInfoComponent = ({ task, toShowMoreInfo, settoShowMoreInfo }: ITaskProps) => {
+
+    const handleShowMoreInfo = () => settoShowMoreInfo(state => false);
 
     return (
         <div className={styles.addDetails}>
@@ -17,7 +26,16 @@ const TaskAdditionalInfoComponent = (task: ITask) => {
 
             <p className={styles.taskOwner}>Task created by:</p>
             <p>{task.taskOwner}</p>
-
+            {/* <div className={styles.buttonsContainer}>
+                <button
+                    type='button'
+                    style={toShowMoreInfo
+                        ? { color: 'white', backgroundColor: "grey" }
+                        : { color: 'white', backgroundColor: 'transparent' }}
+                    onClick={() => handleShowMoreInfo()}>
+                    {toShowMoreInfo ? 'Show less info' : 'Show more info'}
+                </button>
+            </div> */}
         </div>
     )
 }
