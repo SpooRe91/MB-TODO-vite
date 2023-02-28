@@ -3,12 +3,17 @@ A simple Vite-React TO DO app
 available at https://mb-todo.vercel.app/
 
 USED:
+</br>
 TypeScript <img src="https://raw.githubusercontent.com/SpooRe91/icons-and-graphs/main/icons-and-graphics-main/icomoon/programming/PNG/typescript.png?raw=true">
+</br>
 React.js <img src="https://raw.githubusercontent.com/SpooRe91/icons-and-graphs/main/icons-and-graphics-main/icomoon/programming/PNG/react.png?raw=true">
-Redux <img src="https://github.com/SpooRe91/icons-and-graphics/blob/main/icons-and-graphics-main/icomoon/programming/SVG/redux.svg?raw=true">
+</br>
+Redux <img src="https://github.com/SpooRe91/icons-and-graphics/blob/main/icons-and-graphics-main/icomoon/programming/SVG/redux%2Boriginal-1324760569678085188.png?raw=true">
+</br>
 Vite <img src="https://github.com/SpooRe91/icons-and-graphics/blob/main/icons-and-graphics-main/icomoon/programming/SVG/vite-svgrepo-com.svg?raw=true">
+</br>
 SASS (SCSS) <img src="https://raw.githubusercontent.com/SpooRe91/icons-and-graphs/main/icons-and-graphics-main/icomoon/programming/PNG/sass.png?raw=true"> 
-
+</br>
 1. Use the "show task form" button to open up the form and then enter the task details.
 2. Once done, you can press the "submit" button  to pin the new task to the "Your tasks" board.
     - If the task name already exists - there will be an error message with red color under the task name input field.
