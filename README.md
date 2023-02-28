@@ -18,7 +18,7 @@ SASS (SCSS) <img src="https://raw.githubusercontent.com/SpooRe91/icons-and-graph
 1. Use the "show task form" button to open up the form and then enter the task details.
 2. Once done, you can press the "submit" button to pin the new task to the "Your tasks" board.
     * If the task name already exists - there will be an error message with red color under the task name input field.
-    * If the task was added successfully, you will be able to see it pinned to the "Your tasks" board and also a green message will appear at the top part of the form with an "OK" button confirming the task was added successfully.
+    * If the task was added successfully, you will be able to see it pinned to the "Your tasks" board and also a green message will appear on the bottom part of the form with an "OK" button confirming the task was added successfully.
 
 
 3.	Each task has two buttons - "Show more info" and "Delete task"
