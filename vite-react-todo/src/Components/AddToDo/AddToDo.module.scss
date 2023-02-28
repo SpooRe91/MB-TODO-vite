@@ -82,7 +82,8 @@
         font-size: 1.1rem;
         font-weight: 700;
         color: #fd9898;
-        position: absolute;
+        position: fixed;
+        z-index: 110;
         left: 0rem;
         top: 0.1rem;
         background-color: black;

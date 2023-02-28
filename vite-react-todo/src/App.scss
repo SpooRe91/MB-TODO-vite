@@ -9,4 +9,14 @@ main {
         top: 0px;
         left: 0px;
     }
+
+    .formContainer {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.507);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        z-index: 110;
+        position: absolute;
+    }
 }
