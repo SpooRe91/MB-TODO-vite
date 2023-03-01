@@ -89,10 +89,10 @@
         }
 
         .inputField:focus {
-            background-color: rgb(44, 44, 44);
-            border-color: whitesmoke;
-            color: white;
-            border-radius: 0.5rem;
+        background-color: #830000;
+        border-color: #f5f5f5;
+        color: #fff;
+        border-radius: 0.5rem;
         }
 
         .inputField:not(:focus) {
