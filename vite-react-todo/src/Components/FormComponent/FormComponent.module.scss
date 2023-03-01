@@ -102,13 +102,13 @@
 
         .inputField::placeholder {
             font-size: 1rem;
-            color: rgb(87, 87, 87);
+            color: rgb(150, 150, 150);
             transition: all 200ms ease-in-out;
         }
 
         .inputField:focus::placeholder {
             font-size: 1.2rem;
-            color: rgb(119, 119, 119);
+            color: rgb(180, 180, 180);
         }
 
         .inputField {
