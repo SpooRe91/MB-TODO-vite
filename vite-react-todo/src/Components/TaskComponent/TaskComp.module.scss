@@ -49,9 +49,11 @@
         }
 
         .taskDetails {
-            width: 100%;
-            font-size: 1.2rem;
-            transition: all 100ms ease-in-out;
+        width: 100%;
+        font-size: 1.2rem;
+        word-break: break-all;
+        white-space: pre-wrap;
+        transition: all .1s ease-in-out;
         }
 
         .taskBody {
