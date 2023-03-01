@@ -80,6 +80,7 @@ const FormComponent = () => {
                     <label htmlFor="taskBody"><MdGrading className={styles.icon} /> Task body*</label>
                     <textarea
                         className={styles.inputField}
+                        style={{background: data.taskBody ? "green":"red"}}
                         id="taskBody"
                         name="taskBody"
                         placeholder='Task description...'
