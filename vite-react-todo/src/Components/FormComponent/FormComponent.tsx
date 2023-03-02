@@ -29,7 +29,7 @@ const FormComponent = () => {
     });
     
       const handleHideContainer = (e: React.MouseEvent<HTMLSpanElement>) => {
-    e.target === e.currentTarget
+        e.target === e.currentTarget
       ? dispatch(setToShowForm(!globalStateData.showForm))
       : null
   }
