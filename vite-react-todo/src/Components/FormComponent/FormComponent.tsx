@@ -56,7 +56,7 @@ const FormComponent = () => {
 
     return (
         <section className={styles.formContainer}>
-
+                <span className={styles.back}></span>
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
                 <div className={styles.inputContainer}>
