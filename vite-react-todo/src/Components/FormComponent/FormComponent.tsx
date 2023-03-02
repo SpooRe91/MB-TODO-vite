@@ -11,6 +11,11 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
 import { taskState, addTask } from '../../features/tasks/taskSlice';
 
+  const handleHideContainer = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.target === e.currentTarget
+      ? dispatch(setToShowForm(!globalStateData.showForm))
+      : null
+  }
 
 const FormComponent = () => {
 
@@ -56,7 +61,7 @@ const FormComponent = () => {
 
     return (
         <section className={styles.formContainer}>
-                <span className={styles.back}></span>
+                <span className={styles.back} onClick={()=>handleHideContainer()}></span>
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
                 <div className={styles.inputContainer}>
