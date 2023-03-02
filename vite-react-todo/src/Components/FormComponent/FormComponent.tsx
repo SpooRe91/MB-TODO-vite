@@ -28,7 +28,7 @@ const FormComponent = () => {
         taskOwner: ''
     });
     
-      const handleHideContainer = (e: React.MouseEvent<HTMLDivElement>) => {
+      const handleHideContainer = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.target === e.currentTarget
       ? dispatch(setToShowForm(!globalStateData.showForm))
       : null
