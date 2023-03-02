@@ -34,9 +34,9 @@ function App() {
         {
           globalStateData.showForm
             ?
-            <div className="formContainer" onClick={(e) => handleHideContainer(e)}>
+<!--             <div className="formContainer" onClick={(e) => handleHideContainer(e)}> -->
               <FormComponent />
-            </div>
+//             </div>
             :
             null
         }
