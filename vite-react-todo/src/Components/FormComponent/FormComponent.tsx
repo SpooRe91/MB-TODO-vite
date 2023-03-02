@@ -9,7 +9,7 @@ import {
 } from "react-icons/md";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
-import { taskState, addTask, globalState, setToShowForm } from '../../features/tasks/taskSlice';
+import { taskState, addTask } from '../../features/tasks/taskSlice';
 import { globalState, setToShowForm } from '../../features/globalSlice';
 
 const FormComponent = () => {
