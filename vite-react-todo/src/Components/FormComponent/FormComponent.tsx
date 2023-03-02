@@ -9,16 +9,11 @@ import {
 } from "react-icons/md";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
-import { taskState, addTask } from '../../features/tasks/taskSlice';
+import { taskState, addTask, globalState, setToShowForm } from '../../features/tasks/taskSlice';
 
-  const handleHideContainer = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.target === e.currentTarget
-      ? dispatch(setToShowForm(!globalStateData.showForm))
-      : null
-  }
 
 const FormComponent = () => {
-
+    const globalStateData = useAppSelector(globalState);
     const tasksState = useAppSelector(taskState);
     const dispatch = useAppDispatch();
 
@@ -32,6 +27,13 @@ const FormComponent = () => {
         taskEnd: '',
         taskOwner: ''
     });
+    
+      const handleHideContainer = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.target === e.currentTarget
+      ? dispatch(setToShowForm(!globalStateData.showForm))
+      : null
+  }
+
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 
