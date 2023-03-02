@@ -63,7 +63,7 @@ const FormComponent = () => {
 
     return (
         <section className={styles.formContainer}>
-                <span className={styles.back} onClick={()=>handleHideContainer()}></span>
+                <span className={styles.back} onClick={(e)=>handleHideContainer(e)}></span>
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
                 <div className={styles.inputContainer}>
