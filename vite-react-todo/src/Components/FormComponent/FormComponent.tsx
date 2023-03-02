@@ -66,7 +66,7 @@ const FormComponent = () => {
 
                     <input
                         className={styles.inputField}
-                        style={{background: data.taskName ? "green":"#830000"}}
+                        style={{ background: data.taskName ? "green" : "#830000" }}
                         type="text"
                         id="taskName"
                         name="taskName"
@@ -81,7 +81,7 @@ const FormComponent = () => {
                     <label htmlFor="taskBody"><MdGrading className={styles.icon} /> Task body*</label>
                     <textarea
                         className={styles.inputField}
-                        style={{background: data.taskBody ? "green":"#830000"}}
+                        style={{ background: data.taskBody ? "green" : "#830000" }}
                         id="taskBody"
                         name="taskBody"
                         placeholder='Task description...'
@@ -94,7 +94,7 @@ const FormComponent = () => {
                     <label htmlFor="taskOwner"><MdPersonPin className={styles.icon} /> Task issued by*</label>
                     <input
                         className={styles.inputField}
-                        style={{background: data.taskOwner ? "green":"#830000"}}
+                        style={{ background: data.taskOwner ? "green" : "#830000" }}
                         type="text"
                         id="taskOwner"
                         name="taskOwner"
@@ -108,7 +108,7 @@ const FormComponent = () => {
                     <label htmlFor="taskStart"><MdDateRange className={styles.icon} /> Task start date*</label>
                     <input
                         className={styles.inputField}
-                        style={{background: data.taskStart ? "green":"#830000"}}
+                        style={{ background: data.taskStart ? "green" : "#830000" }}
                         type="date"
                         id="taskStart"
                         name="taskStart"
@@ -122,7 +122,7 @@ const FormComponent = () => {
                     <label htmlFor="taskEnd"><MdDateRange className={styles.icon} /> Task end date*</label>
                     <input
                         className={styles.inputField}
-                        style={{background: data.taskEnd ? "green":"#830000"}}
+                        style={{ background: data.taskEnd ? "green" : "#830000" }}
                         type="date"
                         id="taskEnd"
                         name="taskEnd"
