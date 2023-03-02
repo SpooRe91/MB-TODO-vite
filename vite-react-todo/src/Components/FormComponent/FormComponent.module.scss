@@ -49,7 +49,16 @@
 }
     
     .addedContainer {
-        width: 100%;
+        width: 20%;
+        display: flex;
+        gap: 1rem;
+        position: absolute;
+        z-index: 101;
+        top: 2rem;
+        left: 24rem;
+        transform: translate(-50%,-50%);
+        justify-content: center;
+        flex-wrap: wrap;
 
         p {
             color: green;
