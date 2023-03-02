@@ -14,12 +14,6 @@ function App() {
   const globalStateData = useAppSelector(globalState);
   const dispatch = useAppDispatch();
 
-//   const handleHideContainer = (e: React.MouseEvent<HTMLDivElement>) => {
-//     e.target === e.currentTarget
-//       ? dispatch(setToShowForm(!globalStateData.showForm))
-//       : null
-//   }
-
   return (
     <main>
       {
