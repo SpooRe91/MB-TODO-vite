@@ -9,10 +9,12 @@ import {
 } from "react-icons/md";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
-import { taskState, addTask } from '../../features/tasks/taskSlice';
+import { taskState, addTask, editTask } from '../../features/tasks/taskSlice';
 import { globalState, setToShowForm } from '../../features/globalSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 const FormComponent = () => {
+
     const globalStateData = useAppSelector(globalState);
     const tasksState = useAppSelector(taskState);
     const dispatch = useAppDispatch();
@@ -20,20 +22,20 @@ const FormComponent = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [addedMessage, setaddedMessage] = useState('');
 
-    const [data, setData] = useState({
+    const [data, setData] = useState(globalStateData.taskToEdit ? globalStateData.taskToEdit : {
         taskName: '',
         taskBody: '',
         taskStart: '',
         taskEnd: '',
-        taskOwner: ''
+        taskOwner: '',
+        taskId: nanoid()
     });
-    
-      const handleHideContainer = (e: React.MouseEvent<HTMLSpanElement>) => {
-        e.target === e.currentTarget
-      ? dispatch(setToShowForm(!globalStateData.showForm))
-      : null
-  }
 
+    const handleHideContainer = (e: React.MouseEvent<HTMLSpanElement>) => {
+        e.target === e.currentTarget
+            ? dispatch(setToShowForm(!globalStateData.showForm))
+            : null
+    };
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 
@@ -42,28 +44,36 @@ const FormComponent = () => {
             ...state,
             [e.target.name]: e.target.value
         }));
-    }
+    };
 
     const submitTask = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (tasksState.tasks?.find(task => task.taskName === data.taskName)) {
+        if (tasksState.tasks?.find(task => task.taskName === data.taskName) && !globalStateData.taskToEdit) {
             return setErrorMessage(state => 'This name already exists!');
         }
+
         if (!errorMessage) {
-            dispatch(addTask(data));
-            setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '' });
-            setaddedMessage(state => 'Task added!');
+
+            if (globalStateData.taskToEdit) {
+                dispatch(editTask(data));
+                setaddedMessage(state => 'Task edited!');
+            } else {
+                dispatch(addTask(data));
+                setaddedMessage(state => 'Task added!');
+            }
+            setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '', taskId: '' });
         }
-    }
+    };
 
     const handleAddedMessage = () => {
         setaddedMessage(state => '');
-    }
+    };
 
     return (
         <section className={styles.formContainer}>
-                <span className={styles.back} onClick={(e)=>handleHideContainer(e)}></span>
+            <span className={styles.back} onClick={(e) => handleHideContainer(e)}></span>
+
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
                 <div className={styles.inputContainer}>
@@ -120,7 +130,7 @@ const FormComponent = () => {
                         id="taskStart"
                         name="taskStart"
                         placeholder='01.01.2023...'
-                        required pattern="\d{4}-\d{2}-\d{2}"
+                        required pattern="\d{2}-\d{2}-\d{4}"
                         onChange={(e) => changeHandler(e)}
                         value={data.taskStart}
                     />
@@ -134,12 +144,18 @@ const FormComponent = () => {
                         id="taskEnd"
                         name="taskEnd"
                         placeholder='01.01.2023...'
-                        required pattern="\d{4}-\d{2}-\d{2}"
+                        required pattern="\d{2}-\d{2}-\d{4}"
                         onChange={(e) => changeHandler(e)}
                         value={data.taskEnd}
                     />
                 </div>
-                <button type="submit" className={styles.submitBtn}> Submit <BsFillCheckCircleFill /> </button>
+                {
+                    globalStateData.taskToEdit
+                        ?
+                        <button type="submit" className={styles.submitBtn}> Edit <BsFillCheckCircleFill /> </button>
+                        :
+                        <button type="submit" className={styles.submitBtn}> Submit <BsFillCheckCircleFill /> </button>
+                }
             </form>
             {
                 addedMessage
