@@ -33,12 +33,10 @@ export const taskSliceActions = createSlice({
             state.taskEnd = action.payload.taskEnd;
             state.taskOwner = action.payload.taskOwner;
             state.taskId = action.payload.id;
-            // state.tasks?.push(action.payload);
 
             if (localStorage.length > 0) {
                 const existing = JSON.parse(localStorage.getItem('tasks') || '');
-                localStorage.setItem('tasks', JSON.stringify(existing));
-                existing.push(action.payload)
+                existing.push(action.payload);
                 localStorage.clear();
                 localStorage.setItem('tasks', JSON.stringify(existing));
                 state.tasks = existing;
@@ -46,13 +44,27 @@ export const taskSliceActions = createSlice({
                 localStorage.setItem('tasks', JSON.stringify([...[action.payload]]));
                 state.tasks = JSON.parse(localStorage.getItem('tasks') || '');
             }
+        },
 
+        editTask: (state, action) => {
+
+            if (localStorage.length > 0) {
+                const existing = JSON.parse(localStorage.getItem('tasks') || '');
+                let item = existing.find((el: { taskId: any; }) => el.taskId === action.payload.taskId);
+
+                existing[existing.indexOf(item)] = action.payload;
+                localStorage.clear();
+                localStorage.setItem('tasks', JSON.stringify(existing));
+                state.tasks = existing;
+            } else {
+                localStorage.setItem('tasks', JSON.stringify([...[action.payload]]));
+                state.tasks = JSON.parse(localStorage.getItem('tasks') || '');
+            }
         },
 
         deleteTask: (state, action) => {
 
             if (state.tasks !== undefined && state.tasks?.length > 0) {
-
 
                 state.taskName = '';
                 state.taskBody = '';
@@ -83,6 +95,6 @@ export const taskSliceActions = createSlice({
     }
 });
 
-export const { addTask, deleteTask, deleteAllTasks } = taskSliceActions.actions;
+export const { addTask, deleteTask, deleteAllTasks, editTask } = taskSliceActions.actions;
 export const taskState = (state: RootState) => state.taskSlice; //as defined in the store file
 export default taskSliceActions.reducer;
