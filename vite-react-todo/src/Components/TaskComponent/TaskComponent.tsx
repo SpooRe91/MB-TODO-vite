@@ -1,15 +1,17 @@
 import { useState } from 'react';
-
 import styles from "./TaskComp.module.scss";
-import { BsFillXCircleFill, BsFillCheckCircleFill } from "react-icons/bs";
 import { MdOutlineDescription } from "react-icons/md";
-import { useAppDispatch } from '../../App/hooks';
+import { BsFillXCircleFill, BsFillCheckCircleFill } from "react-icons/bs";
+
+import { useAppDispatch, useAppSelector } from '../../App/hooks';
 import { ITask, deleteTask } from '../../features/tasks/taskSlice';
+import { globalState, setToShowForm, setToEditTask } from '../../features/globalSlice';
 import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
 
 const TaskComponent = (task: ITask) => {
 
     const dispatch = useAppDispatch();
+    const globalStateData = useAppSelector(globalState);
 
     const [toShowDelete, setToShowDelete] = useState(false);
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
@@ -19,9 +21,15 @@ const TaskComponent = (task: ITask) => {
     const handleDeleteCancel = () => setToShowDelete(state => false);
     const handleShowMoreInfo = () => settoShowMoreInfo(state => !state);
 
+    const handleEditTask = () => {
+        dispatch(setToShowForm(!globalStateData.showForm));
+        dispatch(setToEditTask(task));
+    };
+
     return (
         <div className={styles.taskItemMain}>
             <div className={styles.taskItem}>
+                <button onClick={() => handleEditTask()}>Edit</button>
                 <h3 className={styles.taskName}><MdOutlineDescription /> Task name</h3>
                 <p className={styles.taskDetails}>{task.taskName}</p>
 
