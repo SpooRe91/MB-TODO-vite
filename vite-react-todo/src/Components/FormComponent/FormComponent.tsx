@@ -10,7 +10,7 @@ import {
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from '../../App/hooks';
 import { taskState, addTask, editTask } from '../../features/tasks/taskSlice';
-import { globalState, setToShowForm } from '../../features/globalSlice';
+import { globalState, setToEditTask, setToShowForm } from '../../features/globalSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
 const FormComponent = () => {
@@ -28,12 +28,12 @@ const FormComponent = () => {
         taskStart: '',
         taskEnd: '',
         taskOwner: '',
-        taskId: nanoid()
+        taskId: ''
     });
 
     const handleHideContainer = (e: React.MouseEvent<HTMLSpanElement>) => {
         e.target === e.currentTarget
-            ? dispatch(setToShowForm(!globalStateData.showForm))
+            ? (dispatch(setToShowForm(!globalStateData.showForm)))
             : null
     };
 
@@ -58,8 +58,9 @@ const FormComponent = () => {
             if (globalStateData.taskToEdit) {
                 dispatch(editTask(data));
                 setaddedMessage(state => 'Task edited!');
+                dispatch(setToEditTask(null))
             } else {
-                dispatch(addTask(data));
+                dispatch(addTask({ ...data, taskId: nanoid() }));
                 setaddedMessage(state => 'Task added!');
             }
             setData({ taskName: '', taskBody: '', taskStart: '', taskEnd: '', taskOwner: '', taskId: '' });
