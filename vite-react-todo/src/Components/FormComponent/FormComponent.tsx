@@ -49,7 +49,7 @@ const FormComponent = () => {
     const submitTask = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (tasksState.tasks?.find(task => task.taskName === data.taskName) && !globalStateData.taskToEdit) {
+        if (tasksState.tasks?.find(task => task.taskName === data.taskName)) {
             return setErrorMessage(state => 'This name already exists!');
         }
 
