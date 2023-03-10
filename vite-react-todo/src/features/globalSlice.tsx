@@ -24,6 +24,7 @@ export const globalActions = createSlice({
 
         setToShowForm: (state, action) => {
             state.showForm = action.payload;
+            state.taskToEdit = null;
         },
 
         setToEditTask: (state, action) => {
