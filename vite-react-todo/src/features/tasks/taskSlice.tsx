@@ -8,7 +8,8 @@ export interface ITask {
     taskEnd: number | string,
     taskOwner: string,
     taskId: string,
-    tasks?: ITask[]
+    tasks?: ITask[],
+    complete?: ITask[]
 }
 
 const initialState: ITask = {
@@ -18,7 +19,8 @@ const initialState: ITask = {
     taskEnd: '',
     taskOwner: '',
     taskId: '',
-    tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks') || '') : []
+    tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks') || '') : [],
+    complete: localStorage.getItem('complete') ? JSON.parse(localStorage.getItem('complete') || '') : []
 }
 
 export const taskSliceActions = createSlice({
@@ -37,7 +39,7 @@ export const taskSliceActions = createSlice({
             if (localStorage.length > 0) {
                 const existing = JSON.parse(localStorage.getItem('tasks') || '');
                 existing.push(action.payload);
-                localStorage.clear();
+                localStorage.removeItem('tasks');
                 localStorage.setItem('tasks', JSON.stringify(existing));
                 state.tasks = existing;
             } else {
@@ -53,12 +55,26 @@ export const taskSliceActions = createSlice({
                 let item = existing.find((el: { taskId: any; }) => el.taskId === action.payload.taskId);
 
                 existing[existing.indexOf(item)] = action.payload;
-                localStorage.clear();
+                localStorage.removeItem('tasks');
                 localStorage.setItem('tasks', JSON.stringify(existing));
                 state.tasks = existing;
             } else {
                 localStorage.setItem('tasks', JSON.stringify([...[action.payload]]));
                 state.tasks = JSON.parse(localStorage.getItem('tasks') || '');
+            }
+        },
+
+        addToComplete: (state, action) => {
+
+            if (localStorage.getItem('complete')) {
+                const existing = JSON.parse(localStorage.getItem('complete') || '');
+
+                existing.push(action.payload);
+                localStorage.removeItem('complete');
+                localStorage.setItem('complete', JSON.stringify(existing));
+                state.complete = existing;
+            } else {
+                localStorage.setItem('complete', JSON.stringify(...[action.payload]));
             }
         },
 
@@ -78,7 +94,7 @@ export const taskSliceActions = createSlice({
                     const toRemove = existing.find((el: { taskName: any; }) => el.taskName === action.payload);
 
                     existing.splice(existing.indexOf(toRemove), 1);
-                    localStorage.clear();
+                    localStorage.removeItem('tasks');
                     localStorage.setItem('tasks', JSON.stringify(existing));
                     state.tasks = existing;
                 } else {
@@ -88,6 +104,7 @@ export const taskSliceActions = createSlice({
                 null;
             }
         },
+
         deleteAllTasks: (state) => {
             localStorage.setItem('tasks', JSON.stringify([]));
             state.tasks = [];
@@ -95,6 +112,6 @@ export const taskSliceActions = createSlice({
     }
 });
 
-export const { addTask, deleteTask, deleteAllTasks, editTask } = taskSliceActions.actions;
+export const { addTask, deleteTask, deleteAllTasks, editTask, addToComplete } = taskSliceActions.actions;
 export const taskState = (state: RootState) => state.taskSlice; //as defined in the store file
 export default taskSliceActions.reducer;
