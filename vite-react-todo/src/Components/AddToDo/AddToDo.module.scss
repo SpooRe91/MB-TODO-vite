@@ -74,36 +74,6 @@
         border-radius: 0.5rem;
     }
 
-    .showFormButton {
-        width: 11rem;
-        margin: 1rem;
-        border: 1px solid coral;
-        border-radius: 0.5rem;
-        box-shadow: 1px 1px 5px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #fd9898;
-        position: fixed;
-        z-index: 110;
-        left: 0rem;
-        top: 0.1rem;
-        background-color: black;
-        transition: all 100ms ease-in-out;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-
-    .showFormButton:hover {
-        cursor: pointer;
-        color: coral;
-        box-shadow: 1px 1px 10px white;
-    }
-
-    .showFormButton:active {
-        background-color: white;
-    }
-
     .newTasksContaner {
         width: 100%;
         min-width: 33%;
