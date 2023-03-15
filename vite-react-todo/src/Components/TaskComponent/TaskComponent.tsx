@@ -4,7 +4,7 @@ import { MdOutlineDescription } from "react-icons/md";
 import { BsFillXCircleFill, BsFillCheckCircleFill } from "react-icons/bs";
 
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
-import { ITask, deleteTask } from '../../features/tasks/taskSlice';
+import { ITask, addToComplete, deleteTask } from '../../features/tasks/taskSlice';
 import { globalState, setToShowForm, setToEditTask } from '../../features/globalSlice';
 import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
 
@@ -17,7 +17,10 @@ const TaskComponent = (task: ITask) => {
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
 
     const showDeleteOptions = () => { setToShowDelete(state => !state) };
-    const handleDeleteConfirm = () => { dispatch(deleteTask(task.taskName)) };
+    const handleDeleteConfirm = () => {
+        dispatch(deleteTask(task));
+        dispatch(addToComplete(task));
+    };
     const handleDeleteCancel = () => setToShowDelete(state => false);
     const handleShowMoreInfo = () => settoShowMoreInfo(state => !state);
 
