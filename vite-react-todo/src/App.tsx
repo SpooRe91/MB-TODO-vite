@@ -1,13 +1,17 @@
 import './App.scss';
 import './ResetCSS.scss';
-
 import { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
 import { globalState, setToShowForm } from './features/globalSlice';
 import { useAppDispatch, useAppSelector } from './App/hooks';
 
 import LoadingComponent from './Components/GlobalComponents/LoadingComponent';
+import NavBar from './Components/NavBar/NavBar';
+import CompletedComponent from './Components/CompletedComponent/CompletedComponent';
+import AddToDo from './Components/AddToDo/AddToDo';
+import { MdFormatListNumbered } from 'react-icons/md';
 
-const AddToDo = lazy(() => import('./Components/AddToDo/AddToDo'));
 const FormComponent = lazy(() => import('./Components/FormComponent/FormComponent'));
 
 function App() {
@@ -16,6 +20,14 @@ function App() {
 
   return (
     <main>
+      <NavBar />
+      <div>
+        <button
+          className='showFormButton'
+          onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
+          <MdFormatListNumbered /> {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
+        </button>
+      </div>
       {
         globalStateData.loading
           ?
@@ -28,12 +40,17 @@ function App() {
         {
           globalStateData.showForm
             ?
-              <FormComponent />
+            <FormComponent />
             :
             null
         }
       </Suspense>
-      <AddToDo />
+      <Routes>
+        {/* <Suspense fallback={<LoadingComponent />}> */}
+        <Route path='/all-tasks' element={<AddToDo />} />
+        <Route path='/done-deleted-tasks' element={<CompletedComponent />} />
+        {/* </Suspense> */}
+      </Routes>
     </main >
   )
 }
