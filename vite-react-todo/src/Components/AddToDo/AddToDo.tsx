@@ -5,15 +5,12 @@ import TaskComponent from '../TaskComponent/TaskComponent';
 import LoadingComponent from '../GlobalComponents/LoadingComponent';
 
 import styles from "./AddToDo.module.scss";
-import { MdFormatListNumbered } from "react-icons/md";
-import { globalState, setToShowForm } from '../../features/globalSlice';
 import { taskState, deleteAllTasks } from '../../features/tasks/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
 
 const AddToDo = () => {
     const dispatch = useAppDispatch();
     const tasksState = useAppSelector(taskState);
-    const globalStateData = useAppSelector(globalState);
 
     const [toDelete, setToDelete] = useState(false);
 
@@ -24,13 +21,7 @@ const AddToDo = () => {
 
     return (
         <div className={styles.main}>
-            <div>
-                <button
-                    className={styles.showFormButton}
-                    onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
-                    <MdFormatListNumbered /> {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
-                </button>
-            </div>
+
             {
                 tasksState?.tasks !== undefined && tasksState.tasks?.length !== 0
                     ?
