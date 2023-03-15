@@ -74,7 +74,7 @@ export const taskSliceActions = createSlice({
                 localStorage.setItem('complete', JSON.stringify(existing));
                 state.complete = existing;
             } else {
-                localStorage.setItem('complete', JSON.stringify(...[action.payload]));
+                localStorage.setItem('complete', JSON.stringify([...[action.payload]]));
             }
         },
 
