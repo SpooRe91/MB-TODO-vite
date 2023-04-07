@@ -19,11 +19,12 @@ function App() {
   const dispatch = useAppDispatch();
 
   return (
-    <main>
+    <main data-cy="app-main">
       <NavBar />
       <div>
         <button
           className='showFormButton'
+          data-cy='showFormButton'
           onClick={() => dispatch(setToShowForm(!globalStateData.showForm))}>
           <MdFormatListNumbered /> {globalStateData.showForm ? 'Hide task from' : 'Show task form'}
         </button>

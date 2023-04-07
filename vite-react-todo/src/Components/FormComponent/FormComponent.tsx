@@ -72,8 +72,8 @@ const FormComponent = () => {
     };
 
     return (
-        <section className={styles.formContainer}>
-            <span className={styles.back} onClick={(e) => handleHideContainer(e)}></span>
+        <section className={styles.formContainer} data-cy="form-component">
+            <span className={styles.back} onClick={(e) => handleHideContainer(e)} data-cy="show-hide-background"></span>
 
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
@@ -92,9 +92,10 @@ const FormComponent = () => {
                         onChange={(e) => changeHandler(e)}
                         value={data.taskName}
                         required
+                        data-cy="taskName"
                     />
                 </div>
-                <p className={styles.errorMessage}>{errorMessage ? errorMessage : null}</p>
+                <p className={styles.errorMessage} data-cy="error-name-already-exists">{errorMessage ? errorMessage : null}</p>
                 <div className={styles.inputContainer}>
                     <label htmlFor="taskBody"><MdGrading className={styles.icon} /> Task body*</label>
                     <textarea
@@ -106,6 +107,7 @@ const FormComponent = () => {
                         onChange={(e) => changeHandler(e)}
                         value={data.taskBody}
                         required
+                        data-cy="taskBody"
                     />
                 </div>
                 <div className={styles.inputContainer}>
@@ -120,6 +122,7 @@ const FormComponent = () => {
                         onChange={(e) => changeHandler(e)}
                         value={data.taskOwner}
                         required
+                        data-cy="taskOwner"
                     />
                 </div>
                 <div className={styles.inputContainer}>
@@ -134,6 +137,7 @@ const FormComponent = () => {
                         required pattern="\d{2}-\d{2}-\d{4}"
                         onChange={(e) => changeHandler(e)}
                         value={data.taskStart}
+                        data-cy="taskStart"
                     />
                 </div>
                 <div className={styles.inputContainer}>
@@ -148,6 +152,7 @@ const FormComponent = () => {
                         required pattern="\d{2}-\d{2}-\d{4}"
                         onChange={(e) => changeHandler(e)}
                         value={data.taskEnd}
+                        data-cy="taskEnd"
                     />
                 </div>
                 {
@@ -155,15 +160,15 @@ const FormComponent = () => {
                         ?
                         <button type="submit" className={styles.submitBtn}> Edit <BsFillCheckCircleFill /> </button>
                         :
-                        <button type="submit" className={styles.submitBtn}> Submit <BsFillCheckCircleFill /> </button>
+                        <button type="submit" className={styles.submitBtn} data-cy="submit-button"> Submit <BsFillCheckCircleFill /> </button>
                 }
             </form>
             {
                 addedMessage
                     ?
-                    <div className={styles.addedContainer}>
+                    <div className={styles.addedContainer} data-cy="added-message">
                         <p>{addedMessage}</p>
-                        <button onClick={() => handleAddedMessage()}>OK</button>
+                        <button onClick={() => handleAddedMessage()} data-cy="added-ok-button">OK</button>
                     </div>
                     : null
             }
