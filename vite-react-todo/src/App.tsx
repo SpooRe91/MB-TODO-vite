@@ -7,8 +7,8 @@ import { globalState, setToShowForm } from './features/globalSlice';
 import { useAppDispatch, useAppSelector } from './App/hooks';
 
 import LoadingComponent from './Components/GlobalComponents/LoadingComponent';
-import NavBar from './Components/NavBar/NavBar';
 import CompletedComponent from './Components/CompletedComponent/CompletedComponent';
+import NavBar from './Components/NavBar/NavBar';
 import AddToDo from './Components/AddToDo/AddToDo';
 import { MdFormatListNumbered } from 'react-icons/md';
 
