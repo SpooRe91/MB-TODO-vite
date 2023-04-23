@@ -45,13 +45,13 @@ function App() {
             :
             null
         }
+        <Routes>
+          <Route path='/all-tasks' element={<AddToDo />} />
+          <Route path='/done-deleted-tasks' element={<CompletedComponent />} />
+        </Routes>
       </Suspense>
-      <Routes>
-        {/* <Suspense fallback={<LoadingComponent />}> */}
-        <Route path='/all-tasks' element={<AddToDo />} />
-        <Route path='/done-deleted-tasks' element={<CompletedComponent />} />
-        {/* </Suspense> */}
-      </Routes>
+      {/* <Suspense fallback={<LoadingComponent />}>
+        </Suspense> */}
     </main >
   )
 }
