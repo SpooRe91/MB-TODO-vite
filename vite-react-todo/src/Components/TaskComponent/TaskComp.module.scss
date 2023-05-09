@@ -27,9 +27,10 @@
     flex-direction: column;
     width: 23%;
     flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 35%);
     filter: grayscale(1);
     backdrop-filter: blur(5px);
-    transition: all 200ms ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     .taskItem {
         width: 100%;
