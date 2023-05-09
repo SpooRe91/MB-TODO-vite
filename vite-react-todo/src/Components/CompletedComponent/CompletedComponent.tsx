@@ -10,6 +10,7 @@ const CompletedComponent = () => {
 
     const tasksState = useAppSelector(taskState);
 
+
     return (
         <div className={styles.taskContainerMain}>
             {
