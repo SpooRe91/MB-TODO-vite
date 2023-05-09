@@ -11,7 +11,7 @@ const CompletedComponent = () => {
     const tasksState = useAppSelector(taskState);
 
     return (
-        <div className={styles.taskItemMain}>
+        <div className={styles.taskContainerMain}>
             {
                 tasksState.complete?.map(el => {
                     return (
