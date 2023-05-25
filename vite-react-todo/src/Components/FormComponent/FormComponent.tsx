@@ -49,10 +49,6 @@ const FormComponent = () => {
     const submitTask = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (tasksState.tasks?.find(task => task.taskName === data.taskName)) {
-            return setErrorMessage(state => 'This name already exists!');
-        }
-
         if (!errorMessage) {
 
             if (globalStateData.taskToEdit) {
@@ -60,6 +56,10 @@ const FormComponent = () => {
                 setaddedMessage(state => 'Task edited!');
                 dispatch(setToEditTask(null))
             } else {
+                if (tasksState.tasks?.find(task => task.taskName === data.taskName)) {
+                    return setErrorMessage(state => 'This name already exists!');
+                }
+
                 dispatch(addTask({ ...data, taskId: nanoid() }));
                 setaddedMessage(state => 'Task added!');
             }
@@ -158,17 +158,35 @@ const FormComponent = () => {
                 {
                     globalStateData.taskToEdit
                         ?
-                        <button type="submit" className={styles.submitBtn}> Edit <BsFillCheckCircleFill /> </button>
+                        <button
+                            type="submit"
+                            className={styles.submitBtn}>
+                            Edit
+                            <BsFillCheckCircleFill />
+                        </button>
                         :
-                        <button type="submit" className={styles.submitBtn} data-cy="submit-button"> Submit <BsFillCheckCircleFill /> </button>
+                        <button
+                            type="submit"
+                            className={styles.submitBtn}
+                            data-cy="submit-button">
+                            Submit
+                            <BsFillCheckCircleFill />
+                        </button>
                 }
             </form>
             {
                 addedMessage
                     ?
-                    <div className={styles.addedContainer} data-cy="added-message">
+                    <div
+                        className={styles.addedContainer}
+                        data-cy="added-message"
+                    >
                         <p>{addedMessage}</p>
-                        <button onClick={() => handleAddedMessage()} data-cy="added-ok-button">OK</button>
+                        <button
+                            onClick={() => handleAddedMessage()}
+                            data-cy="added-ok-button">
+                            OK
+                        </button>
                     </div>
                     : null
             }
