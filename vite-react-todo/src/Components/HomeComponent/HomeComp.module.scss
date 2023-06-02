@@ -1,0 +1,75 @@
+.main-container {
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    margin: auto;
+    position: relative;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    .homepage-container {
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        align-items: center;
+        gap: 5rem;
+        width: 100%;
+
+        .homepage-header {
+            font-size: 4rem;
+            color: rgb(217 208 208);
+            text-shadow: 3px 0px 1px rgb(0 0 0 / 80%), 3px 0px 1px rgb(217 161 161 / 80%),
+                5px 0px 1px rgb(215 148 148 / 80%), 6px 0px 1px rgb(255 108 0 / 80%);
+        }
+        .homepage-secondary-header {
+            font-size: 3rem;
+            color: rgb(217 208 208);
+            text-shadow: 1px 1px 1px rgb(0 0 0 / 80%), 3px 0px 1px rgb(217 161 161 / 80%),
+                5px 0px 1px rgb(215 148 148 / 80%), 6px 0px 1px rgb(255 108 0 / 80%);
+        }
+    }
+}
+.main-container::before {
+    content: "";
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    z-index: -1;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1501px) {
+    .main-container {
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+        z-index: 1;
+        display: flex;
+        margin: auto;
+        position: relative;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+
+        .homepage-container {
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+            align-items: center;
+            gap: 2rem;
+            margin: 0.5rem;
+
+            .homepage-header {
+                font-size: 3rem;
+                text-shadow: 1px 1px 1px rgb(0 0 0 / 80%), 3px 0px 1px rgb(217 161 161 / 80%);
+                text-align: center;
+            }
+            .homepage-secondary-header {
+                font-size: 2rem;
+                text-shadow: 1px 1px 1px rgb(0 0 0 / 80%), 3px 0px 1px rgb(217 161 161 / 80%);
+                text-align: center;
+            }
+        }
+    }
+}
