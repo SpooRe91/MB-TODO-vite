@@ -3,7 +3,7 @@ main {
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 3.53rem;
+    overflow-x: hidden;
 
     .loaderComp {
         position: fixed;
@@ -20,34 +20,30 @@ main {
         z-index: 110;
         position: absolute;
     }
+}
 
-    .showFormButton {
-        width: 11rem;
-        margin: 1rem;
-        border: 1px solid coral;
-        border-radius: 0.5rem;
-        box-shadow: 1px 1px 5px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #fd9898;
-        position: fixed;
-        z-index: 110;
-        left: 0rem;
-        top: 0.1rem;
-        background-color: black;
-        transition: all 100ms ease-in-out;
+@media screen and (min-width: 320px) and (max-width: 1501px) {
+    main {
         display: flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        overflow-x: hidden;
 
-    .showFormButton:hover {
-        cursor: pointer;
-        color: coral;
-        box-shadow: 1px 1px 10px white;
-    }
+        .loaderComp {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+        }
 
-    .showFormButton:active {
-        background-color: white;
+        .formContainer {
+            width: 100%;
+            background-color: rgb(0 0 0 / 81%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            z-index: 110;
+            position: relative;
+        }
     }
 }
