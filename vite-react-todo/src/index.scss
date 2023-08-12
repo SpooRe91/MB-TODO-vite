@@ -1,10 +1,6 @@
 @import url("ResetCSS.scss");
 :root {
-  background-image: url("../src/assets/672464.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
+  min-width: 320px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family:
@@ -22,6 +18,6 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  overflow-y: overlay;
-  overflow-x: overlay;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

@@ -32,11 +32,16 @@ html:focus-within {
     scroll-behavior: smooth;
 }
 
-/* Set core body defaults */
 body {
-    min-height: 100vh;
+    min-height: 100%;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
+    background-color: #242424;
+    background-image: url("../src/assets/672464.jpg");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 /* A elements that don't have a class get default styles */
