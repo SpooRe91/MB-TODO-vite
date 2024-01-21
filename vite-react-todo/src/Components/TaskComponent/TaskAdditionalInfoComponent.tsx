@@ -15,10 +15,10 @@ const TaskAdditionalInfoComponent = (task: ITask) => {
             <p className={styles.taskBody}>{task.taskBody}</p>
 
             <p className={styles.taskStart}><MdDateRange /> Task start date:</p>
-            <p>{task.taskStart.toString().split("-").reverse().join('-')}</p>
+            <p>{task.taskStart?.toString().split("-").reverse().join('-')}</p>
 
             <p className={styles.taskEnd}><MdDateRange /> Task end date:</p>
-            <p>{task.taskEnd.toString().split("-").reverse().join('-')}</p>
+            <p>{task.taskEnd?.toString().split("-").reverse().join('-')}</p>
 
             <p className={styles.taskOwner}><MdPersonPin /> Task created by:</p>
             <p>{task.taskOwner}</p>
