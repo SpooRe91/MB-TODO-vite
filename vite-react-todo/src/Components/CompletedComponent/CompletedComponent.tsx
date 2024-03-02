@@ -20,10 +20,10 @@ const CompletedComponent = () => {
                             <p className={styles.taskBody}>{el.taskBody}</p>
 
                             <p className={styles.taskStart}><MdDateRange /> Task start date:</p>
-                            <p>{el.taskStart.toString().split("-").reverse().join('-')}</p>
+                            <p>{el.taskStart?.toString().split("-").reverse().join('-')}</p>
 
                             <p className={styles.taskEnd}><MdDateRange /> Task end date:</p>
-                            <p>{el.taskEnd.toString().split("-").reverse().join('-')}</p>
+                            <p>{el.taskEnd?.toString().split("-").reverse().join('-')}</p>
 
                             <p className={styles.taskOwner}><MdPersonPin /> Task created by:</p>
                             <p>{el.taskOwner}</p>

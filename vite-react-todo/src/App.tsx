@@ -8,6 +8,7 @@ import { useAppSelector } from './App/hooks';
 
 import { NavBar, LoadingComponent } from './allComponentsImported';
 import HomeComp from './Components/HomeComponent/HomeComp';
+import useGetAgentView from './hooks/useGetAgentView';
 
 const FormComponent = lazy(() => import('./Components/FormComponent/FormComponent'));
 const AddToDo = lazy(() => import('./Components/AddToDo/AddToDo'));
@@ -15,7 +16,7 @@ const CompletedComponent = lazy(() => import('./Components/CompletedComponent/Co
 
 function App() {
   const globalStateData = useAppSelector(globalState);
-
+  
   return (
     <main data-cy="app-main">
       <NavBar />

@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../App/hooks';
 import { ITask, addToComplete, deleteTask } from '../../features/tasks/taskSlice';
 import { globalState, setToShowForm, setToEditTask } from '../../features/globalSlice';
 import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
+import useGetAgentView from '../../hooks/useGetAgentView';
+
 
 const TaskComponent = (task: ITask) => {
 
@@ -15,13 +17,16 @@ const TaskComponent = (task: ITask) => {
 
     const [toShowDelete, setToShowDelete] = useState(false);
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
+    const { isMobile } = useGetAgentView();
 
     const showDeleteOptions = () => { setToShowDelete(state => !state) };
+
     const handleDeleteConfirm = () => {
         dispatch(deleteTask(task));
         dispatch(addToComplete(task));
     };
-    const handleDeleteCancel = () => setToShowDelete(state => false);
+
+    const handleDeleteCancel = () => setToShowDelete(false);
     const handleShowMoreInfo = () => settoShowMoreInfo(state => !state);
 
     const handleEditTask = () => {
@@ -39,9 +44,7 @@ const TaskComponent = (task: ITask) => {
                 <div className={styles.buttonsContainer}>
                     <button
                         type='button'
-                        style={toShowMoreInfo
-                            ? { color: 'white', backgroundColor: "grey" }
-                            : { color: 'white', backgroundColor: 'transparent' }}
+                        style={{ color: 'white', backgroundColor: 'transparent', fontSize: isMobile ? '1rem' : '' }}
                         onClick={() => handleShowMoreInfo()}>
                         {toShowMoreInfo ? 'Show less info' : 'Show more info'}
                     </button>
@@ -67,8 +70,9 @@ const TaskComponent = (task: ITask) => {
             {
                 toShowMoreInfo
                     ?
-                    <TaskAdditionalInfoComponent
-                        {...task} />
+                    <>
+                        <TaskAdditionalInfoComponent handleModalClose={handleShowMoreInfo} task={task} />
+                    </>
                     : null
             }
         </div>

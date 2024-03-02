@@ -1,4 +1,4 @@
-import styles from "./TaskComp.module.scss";
+import styles from "./ModalTask.module.scss";
 
 import { ITask } from '../../features/tasks/taskSlice';
 import {
@@ -6,23 +6,38 @@ import {
     MdPersonPin,
     MdDateRange
 } from "react-icons/md";
+import useGetAgentView from "../../hooks/useGetAgentView";
 
-const TaskAdditionalInfoComponent = (task: ITask) => {
+type TaskModalProps = {
+    task: ITask
+    handleModalClose?: () => void;
+}
+
+const TaskAdditionalInfoComponent: React.FC<TaskModalProps> = ({ task, handleModalClose }) => {
+    const startDate = task.taskStart?.toString().split("-").reverse().join('-');
+    const endDate = task.taskEnd?.toString().split("-").reverse().join('-');
+
+    const { isMobile } = useGetAgentView();
 
     return (
-        <div className={styles.addDetails}>
-            <h3 className={styles.taskBody}><MdGrading />Task body</h3>
-            <p className={styles.taskBody}>{task.taskBody}</p>
+        <div className={isMobile ? styles.mobileContainer : styles.dialogContainer}>
+            <div className={styles.modalContent}>
+                <h3 className={styles.modalTitle}><MdGrading />Task body</h3>
+                <p className={styles.modalBody}>{task.taskBody}</p>
 
-            <p className={styles.taskStart}><MdDateRange /> Task start date:</p>
-            <p>{task.taskStart?.toString().split("-").reverse().join('-')}</p>
+                <h4 className={styles.taskStart}><MdDateRange /> Task start date: </h4>
+                <p style={{ color: "coral" }}>{startDate}</p>
+                <h4 className={styles.taskEnd}><MdDateRange /> Task end date: </h4>
+                <p style={{ color: "coral" }} >{endDate}</p>
 
-            <p className={styles.taskEnd}><MdDateRange /> Task end date:</p>
-            <p>{task.taskEnd?.toString().split("-").reverse().join('-')}</p>
-
-            <p className={styles.taskOwner}><MdPersonPin /> Task created by:</p>
-            <p>{task.taskOwner}</p>
-        </div>
+                <p className={styles.taskOwner}><MdPersonPin /> Task created by:</p>
+                <p>{task.taskOwner}</p>
+            </div>
+            <button className={styles.closeButton}
+                onClick={() => typeof handleModalClose === 'function' && handleModalClose()}>
+                X
+            </button>
+        </div >
     )
 }
 

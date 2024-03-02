@@ -7,16 +7,16 @@ import LoadingComponent from '../GlobalComponents/LoadingComponent';
 import styles from "./AddToDo.module.scss";
 import { taskState, deleteAllTasks } from '../../features/tasks/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
+import useGetAgentView from '../../hooks/useGetAgentView';
 
 const AddToDo = () => {
     const dispatch = useAppDispatch();
     const tasksState = useAppSelector(taskState);
-
     const [toDelete, setToDelete] = useState(false);
 
     const handleDeleteAll = () => {
         dispatch(deleteAllTasks())
-        setToDelete(state => false);
+        setToDelete(false);
     };
 
     return (
@@ -77,8 +77,8 @@ const AddToDo = () => {
                     </>
                     :
                     <div className={styles.noTaksSign}>
-                        <h2>There are no tasks yet, add one from the add task form. </h2>
-                        <h2>You can use the button "Show task form" if the form is not visible!</h2>
+                        <h2>There are no tasks yet, add one from the add task form.
+                            You can use the button "Show task form" if the form is not visible!</h2>
                     </div>
             }
         </div >

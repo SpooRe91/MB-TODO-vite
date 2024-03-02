@@ -2,6 +2,9 @@
     width: 75%;
     padding: 1.2rem;
     margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h2 {
         text-align: center;
@@ -59,20 +62,21 @@
         color: coral;
         display: inline-block;
         font-size: 2.2rem;
-        text-shadow: 2px 1px 2px white, -1px 3px 2px black;
+        text-shadow:
+            2px 1px 2px white,
+            -1px 3px 2px black;
     }
 
     .noTaksSign {
         background-color: #461e1e;
-        line-height: 1.4;
-        letter-spacing: 0.3px;
-        width: 51%;
-        min-width: 32%;
+        min-width: 320px;
         text-align: center;
-        height: min-content;
         padding: 0.5rem;
         border: 1px solid coral;
         border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
     }
 
     .newTasksContaner {
@@ -83,6 +87,7 @@
         margin-top: 1rem;
         flex-wrap: wrap;
         align-items: flex-start;
+        justify-content: center;
 
         h2 {
             color: white;

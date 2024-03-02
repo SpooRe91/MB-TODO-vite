@@ -4,9 +4,10 @@ import styles from './NavBar.module.scss';
 import { useAppDispatch, useAppSelector } from '../../App/hooks';
 import { globalState, setToShowForm } from '../../features/globalSlice';
 import { MdFormatListNumbered } from 'react-icons/md';
+import useGetAgentView from '../../hooks/useGetAgentView';
 
 const NavBar = () => {
-
+    
     const dispatch = useAppDispatch();
     const globalStateData = useAppSelector(globalState);
 
