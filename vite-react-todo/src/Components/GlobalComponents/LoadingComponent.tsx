@@ -3,7 +3,7 @@ import BarLoader from "react-spinners/BarLoader";
 
 import styles from "./LoadingComponent.module.scss";
 
-const LoadingComponent = (props:
+export const LoadingComponent = (props:
     DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>) => {
 
     return (
@@ -15,5 +15,3 @@ const LoadingComponent = (props:
         </div>
     )
 }
-
-export default LoadingComponent

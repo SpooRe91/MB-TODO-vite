@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import { useState } from "react";
 import styles from "./TaskComp.module.scss";
 import { MdOutlineDescription } from "react-icons/md";
 import { BsFillXCircleFill, BsFillCheckCircleFill } from "react-icons/bs";
 
-import { useAppDispatch, useAppSelector } from '../../App/hooks';
-import { ITask, addToComplete, deleteTask } from '../../features/tasks/taskSlice';
-import { globalState, setToShowForm, setToEditTask } from '../../features/globalSlice';
-import TaskAdditionalInfoComponent from './TaskAdditionalInfoComponent';
-import useGetAgentView from '../../hooks/useGetAgentView';
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { ITask, addToComplete, deleteTask } from "../../features/tasks/taskSlice";
+import { globalState, setToShowForm, setToEditTask } from "../../features/globalSlice";
+import { TaskAdditionalInfoComponent } from "..";
+import useGetAgentView from "../../hooks/useGetAgentView";
 
-
-const TaskComponent = (task: ITask) => {
-
+export const TaskComponent = (task: ITask) => {
     const dispatch = useAppDispatch();
     const globalStateData = useAppSelector(globalState);
 
@@ -19,7 +17,9 @@ const TaskComponent = (task: ITask) => {
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
     const { isMobile } = useGetAgentView();
 
-    const showDeleteOptions = () => { setToShowDelete(state => !state) };
+    const showDeleteOptions = () => {
+        setToShowDelete((state) => !state);
+    };
 
     const handleDeleteConfirm = () => {
         dispatch(deleteTask(task));
@@ -27,7 +27,7 @@ const TaskComponent = (task: ITask) => {
     };
 
     const handleDeleteCancel = () => setToShowDelete(false);
-    const handleShowMoreInfo = () => settoShowMoreInfo(state => !state);
+    const handleShowMoreInfo = () => settoShowMoreInfo((state) => !state);
 
     const handleEditTask = () => {
         dispatch(setToShowForm(!globalStateData.showForm));
@@ -38,45 +38,52 @@ const TaskComponent = (task: ITask) => {
         <div className={styles.taskItemMain}>
             <div className={styles.taskItem}>
                 <button onClick={() => handleEditTask()}>Edit</button>
-                <h3 className={styles.taskName}><MdOutlineDescription /> Task name</h3>
+                <h3 className={styles.taskName}>
+                    <MdOutlineDescription /> Task name
+                </h3>
                 <p className={styles.taskDetails}>{task.taskName}</p>
 
                 <div className={styles.buttonsContainer}>
                     <button
-                        type='button'
-                        style={{ color: 'white', backgroundColor: 'transparent', fontSize: isMobile ? '1rem' : '' }}
-                        onClick={() => handleShowMoreInfo()}>
-                        {toShowMoreInfo ? 'Show less info' : 'Show more info'}
+                        type="button"
+                        style={{
+                            color: "white",
+                            backgroundColor: "transparent",
+                            fontSize: isMobile ? "1rem" : "",
+                        }}
+                        onClick={() => handleShowMoreInfo()}
+                    >
+                        {toShowMoreInfo ? "Show less info" : "Show more info"}
                     </button>
-                    {
-                        toShowDelete
-                            ?
-                            <div className={styles.buttonsContainer}>
-                                <button className={styles.deleteButtons} onClick={() => handleDeleteConfirm()}><BsFillCheckCircleFill /></button>
-                                <button className={styles.deleteButtons} onClick={() => handleDeleteCancel()}><BsFillXCircleFill /></button>
-                            </div>
-                            :
-                            <button
-                                type='button'
-                                style={toShowDelete
-                                    ? { color: 'white', backgroundColor: "grey" }
-                                    : { color: 'white', backgroundColor: 'transparent' }}
-                                onClick={() => showDeleteOptions()}>
-                                Delete task
+                    {toShowDelete ? (
+                        <div className={styles.buttonsContainer}>
+                            <button className={styles.deleteButtons} onClick={() => handleDeleteConfirm()}>
+                                <BsFillCheckCircleFill />
                             </button>
-                    }
+                            <button className={styles.deleteButtons} onClick={() => handleDeleteCancel()}>
+                                <BsFillXCircleFill />
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            type="button"
+                            style={
+                                toShowDelete
+                                    ? { color: "white", backgroundColor: "grey" }
+                                    : { color: "white", backgroundColor: "transparent" }
+                            }
+                            onClick={() => showDeleteOptions()}
+                        >
+                            Delete task
+                        </button>
+                    )}
                 </div>
             </div>
-            {
-                toShowMoreInfo
-                    ?
-                    <>
-                        <TaskAdditionalInfoComponent handleModalClose={handleShowMoreInfo} task={task} />
-                    </>
-                    : null
-            }
+            {toShowMoreInfo ? (
+                <>
+                    <TaskAdditionalInfoComponent handleModalClose={handleShowMoreInfo} task={task} />
+                </>
+            ) : null}
         </div>
-    )
-}
-
-export default TaskComponent
+    );
+};
