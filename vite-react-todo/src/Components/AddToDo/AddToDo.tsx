@@ -6,6 +6,7 @@ import { LoadingComponent, TaskComponent } from "..";
 import styles from "./AddToDo.module.scss";
 import { taskState, deleteAllTasks } from "../../features/tasks/taskSlice";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import useGetAgentView from "../../hooks/useGetAgentView";
 
 export type exportType = {
     type: string;
@@ -15,6 +16,7 @@ const AddToDo = () => {
     const dispatch = useAppDispatch();
     const tasksState = useAppSelector(taskState);
     const [toDelete, setToDelete] = useState(false);
+    const { isMobile } = useGetAgentView();
 
     const handleDeleteAll = () => {
         dispatch(deleteAllTasks());
@@ -73,7 +75,7 @@ const AddToDo = () => {
                     </section>
                 </>
             ) : (
-                <div className={styles.noTaksSign}>
+                <div className={!isMobile ? styles.noTaksSign : styles.noTaksSignMobile}>
                     <h2>
                         There are no tasks yet, add one from the add task form. You can use the button "Show
                         task form" if the form is not visible!

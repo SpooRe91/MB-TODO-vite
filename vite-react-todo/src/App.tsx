@@ -10,7 +10,7 @@ import { HomeComp, NavBar, LoadingComponent } from "./Components";
 
 const FormComponent = lazy(() => import("./Components/FormComponent/FormComponent"));
 const AddToDo = lazy(() => import("./Components/AddToDo/AddToDo"));
-const CompletedComponent = lazy(() => import("./Components/CompletedComponent/CompletedComponent"));
+const CompletedComponent = lazy(() => import("./Components/CompletedComponent/CompletedComponentContainer"));
 
 function App() {
     const globalStateData = useAppSelector(globalState);

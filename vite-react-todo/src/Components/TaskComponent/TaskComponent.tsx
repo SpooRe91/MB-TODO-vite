@@ -10,12 +10,12 @@ import { TaskAdditionalInfoComponent } from "..";
 import useGetAgentView from "../../hooks/useGetAgentView";
 
 export const TaskComponent = (task: ITask) => {
+    const { isMobile } = useGetAgentView();
     const dispatch = useAppDispatch();
     const globalStateData = useAppSelector(globalState);
 
     const [toShowDelete, setToShowDelete] = useState(false);
     const [toShowMoreInfo, settoShowMoreInfo] = useState(false);
-    const { isMobile } = useGetAgentView();
 
     const showDeleteOptions = () => {
         setToShowDelete((state) => !state);
