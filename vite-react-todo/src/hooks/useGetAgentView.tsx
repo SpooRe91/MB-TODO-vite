@@ -1,16 +1,22 @@
-import { useMemo } from "react";
-import { deviceDetect } from "react-device-detect";
+import { useEffect, useState } from "react";
 
 const mobileThreshold = 768;
-const useGetAgentView = () => {
-    const isMobile = useMemo(() => {
-        const { isMobile } = deviceDetect(navigator.userAgent);
-        if (isMobile && window.innerWidth < mobileThreshold) {
-            return true;
-        }
-        return false;
-    }, [window.innerWidth]);
 
+const useGetAgentView = () => {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+    const isMobile = mobileThreshold > windowWidth;
     return { isMobile };
 };
 
