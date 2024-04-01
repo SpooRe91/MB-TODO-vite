@@ -3,7 +3,7 @@ import styles from "./CompletedComponent.module.scss";
 import { ITask } from "../../features/tasks/taskSlice";
 import { MdDateRange, MdGrading, MdPersonPin } from "react-icons/md";
 
-const CompletedComponentMobile: React.FC<ITask> = ({ taskBody, taskEnd, taskOwner, taskStart }) => {
+const CompletedComponentMobile = ({ taskBody, taskEnd, taskOwner, taskStart }: ITask) => {
     return (
         <div className={styles.addDetails}>
             <div className={styles.taskBodyContainer}>
