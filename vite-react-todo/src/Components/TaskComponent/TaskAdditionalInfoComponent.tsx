@@ -9,7 +9,7 @@ type TaskModalProps = {
     handleModalClose?: () => void;
 };
 
-export const TaskAdditionalInfoComponent: React.FC<TaskModalProps> = ({ task, handleModalClose }) => {
+export const TaskAdditionalInfoComponent = ({ task, handleModalClose }: TaskModalProps) => {
     const startDate = task.taskStart
         ?.toString()
         .split("-")
