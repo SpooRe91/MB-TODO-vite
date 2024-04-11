@@ -12,7 +12,6 @@
   z-index: 1000;
   border-radius: 1rem;
   flex-direction: column;
-  overflow-y: scroll;
 
   .modalContent {
     width: 100%;
@@ -32,6 +31,8 @@
     .modalBody {
       margin-bottom: 1rem;
       padding: 10px 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
 
     .modal-button-close {
@@ -91,7 +92,6 @@
   z-index: 1000;
   border-radius: 1rem;
   flex-direction: column;
-  overflow-y: scroll;
 
   .modalContent {
     width: 100%;
@@ -112,6 +112,10 @@
       margin-bottom: 1rem;
       padding: 10px 0;
       font-size: 0.8rem;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      width: 100%;
+      word-break: break-word;
     }
 
     .taskOwner,
