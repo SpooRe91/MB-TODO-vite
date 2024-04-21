@@ -122,11 +122,13 @@ const FormComponent = () => {
 
             <form className={styles.taskForm} onSubmit={(e) => submitTask(e)}>
                 <h3>Add task form</h3>
+                <p className={styles.errorMessage} data-cy="error-name-already-exists">
+                    {errorMessage ? errorMessage : null}
+                </p>
                 <div className={styles.inputContainer}>
                     <label htmlFor="taskName">
                         <MdOutlineDescription className={styles.icon} /> Task name*
                     </label>
-
                     <input
                         className={styles.inputField}
                         style={{ background: data.taskName ? "green" : "#830000" }}
@@ -140,9 +142,6 @@ const FormComponent = () => {
                         data-cy="taskName"
                     />
                 </div>
-                <p className={styles.errorMessage} data-cy="error-name-already-exists">
-                    {errorMessage ? errorMessage : null}
-                </p>
                 <div className={styles.inputContainer}>
                     <label htmlFor="taskBody">
                         <MdGrading className={styles.icon} /> Task body*
