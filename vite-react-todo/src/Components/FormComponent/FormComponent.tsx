@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from "../../App/hooks";
 import { taskState, addTask, editTask } from "../../features/tasks/taskSlice";
 import { globalState, setToEditTask, setToShowForm } from "../../features/globalSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { isStartDateBeforeEndDate } from "../../utils/dateUtils";
 
 const FormComponent = () => {
     const globalStateData = useAppSelector(globalState);
@@ -29,6 +30,11 @@ const FormComponent = () => {
               }
     );
 
+    const isValidDateRange = isStartDateBeforeEndDate({
+        startDate: data.taskStart,
+        endDate: data.taskEnd,
+    });
+
     const handleHideContainer = (e: React.MouseEvent<HTMLSpanElement>) => {
         e.target === e.currentTarget ? dispatch(setToShowForm(!globalStateData.showForm)) : null;
     };
@@ -46,12 +52,20 @@ const FormComponent = () => {
     const submitTask = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        if (!isValidDateRange) {
+            setErrorMessage("Date range is not correct!");
+            return;
+        }
+
         if (!errorMessage) {
-            if (tasksState.tasks?.find((task) => task.taskName === data.taskName)) {
+            if (
+                !globalStateData.taskToEdit &&
+                tasksState.tasks?.find((task) => task.taskName === data.taskName)
+            ) {
                 return setErrorMessage("This name already exists!");
             }
 
-            if (globalStateData.taskToEdit) {
+            if (globalStateData.taskToEdit && isValidDateRange) {
                 dispatch(editTask(data));
                 setaddedMessage("Task edited!");
                 dispatch(setToEditTask(null));
@@ -67,6 +81,7 @@ const FormComponent = () => {
 
     const handleAddedMessage = () => {
         setaddedMessage("");
+        dispatch(setToShowForm(!globalStateData.showForm));
     };
 
     const renderFormButtons = useMemo(
@@ -167,7 +182,7 @@ const FormComponent = () => {
                     </label>
                     <input
                         className={styles.inputField}
-                        style={{ background: data.taskStart ? "green" : "#830000" }}
+                        style={{ background: data.taskStart && isValidDateRange ? "green" : "#830000" }}
                         type="date"
                         id="taskStart"
                         name="taskStart"

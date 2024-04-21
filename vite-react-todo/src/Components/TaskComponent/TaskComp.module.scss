@@ -73,10 +73,16 @@
             letter-spacing: 0.4mm;
         }
 
-        h3.taskName {
-            color: white;
-            text-decoration: underline;
-            font-weight: 760;
+        .taskNameContainer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            .taskName {
+                color: white;
+                text-decoration: underline;
+                font-weight: 760;
+            }
         }
 
         button {

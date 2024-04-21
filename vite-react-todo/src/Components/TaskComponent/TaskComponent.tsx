@@ -38,9 +38,10 @@ export const TaskComponent = (task: ITask) => {
         <div className={styles.taskItemMain}>
             <div className={styles.taskItem}>
                 <button onClick={() => handleEditTask()}>Edit</button>
-                <h3 className={styles.taskName}>
-                    <MdOutlineDescription /> Task name
-                </h3>
+                <div className={styles.taskNameContainer}>
+                    <MdOutlineDescription />
+                    <h3 className={styles.taskName}>Task name</h3>
+                </div>
                 <p className={styles.taskDetails}>{task.taskName}</p>
 
                 <div className={styles.buttonsContainer}>

@@ -1,8 +1,12 @@
 import styles from "./ModalTask.module.scss";
 
 import { ITask } from "../../features/tasks/taskSlice";
-import { MdGrading, MdPersonPin, MdDateRange } from "react-icons/md";
+
 import useGetAgentView from "../../hooks/useGetAgentView";
+import CloseIcon from "@mui/icons-material/Close";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import PersonIcon from "@mui/icons-material/Person";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 type TaskModalProps = {
     task: ITask;
@@ -27,22 +31,23 @@ export const TaskAdditionalInfoComponent = ({ task, handleModalClose }: TaskModa
         <div className={isMobile ? styles.mobileContainer : styles.dialogContainer}>
             <div className={styles.modalContent}>
                 <h3 className={styles.modalTitle}>
-                    <MdGrading />
-                    Task body
+                    <AssignmentIcon />
+                    Task info
                 </h3>
-                <p className={styles.modalBody}>{task.taskBody}</p>
-
+                <div className={styles.modalInfoContainer}>
+                    <p className={styles.modalBody}>{task.taskBody}</p>
+                </div>
                 <h4 className={styles.taskStart}>
-                    <MdDateRange /> Task start date:{" "}
+                    <DateRangeIcon /> Task start date:{" "}
                 </h4>
                 <p style={{ color: "coral" }}>{startDate}</p>
                 <h4 className={styles.taskEnd}>
-                    <MdDateRange /> Task end date:{" "}
+                    <DateRangeIcon /> Task end date:{" "}
                 </h4>
                 <p style={{ color: "coral" }}>{endDate}</p>
 
                 <p className={styles.taskOwner}>
-                    <MdPersonPin /> Task created by:
+                    <PersonIcon /> Task created by:
                 </p>
                 <p>{task.taskOwner}</p>
             </div>
@@ -50,7 +55,7 @@ export const TaskAdditionalInfoComponent = ({ task, handleModalClose }: TaskModa
                 className={styles.closeButton}
                 onClick={() => typeof handleModalClose === "function" && handleModalClose()}
             >
-                X
+                <CloseIcon />
             </button>
         </div>
     );
