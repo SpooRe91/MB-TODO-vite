@@ -6,7 +6,7 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from "../../App/hooks";
 import { taskState, addTask, editTask } from "../../features/tasks/taskSlice";
 import { globalState, setToEditTask, setToShowForm } from "../../features/globalSlice";
-import { nanoid } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 import { isStartDateBeforeEndDate } from "../../utils/dateUtils";
 
 const FormComponent = () => {
@@ -72,7 +72,7 @@ const FormComponent = () => {
                 return;
             }
 
-            dispatch(addTask({ ...data, taskId: nanoid() }));
+            dispatch(addTask({ ...data, taskId: uuidv4() }));
             setaddedMessage("Task added!");
 
             setData({ taskName: "", taskBody: "", taskStart: "", taskEnd: "", taskOwner: "", taskId: "" });
@@ -81,7 +81,6 @@ const FormComponent = () => {
 
     const handleAddedMessage = () => {
         setaddedMessage("");
-        dispatch(setToShowForm(!globalStateData.showForm));
     };
 
     const renderFormButtons = useMemo(

@@ -1,4 +1,4 @@
-import { nanoid } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 import { useState, Suspense } from "react";
 
 import { LoadingComponent, TaskComponent } from "..";
@@ -67,7 +67,7 @@ const AddToDo = () => {
                             >
                                 <>
                                     {tasksState?.tasks.map((task) => {
-                                        return <TaskComponent key={nanoid()} {...task} />;
+                                        return <TaskComponent key={uuidv4()} {...task} />;
                                     })}
                                 </>
                             </Suspense>
